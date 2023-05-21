@@ -44,6 +44,24 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this@LoginActivity, "Role Belom Dipilih", Toast.LENGTH_SHORT).show()
             }
         }
+
+        binding.btnForget.setOnClickListener{
+            if(binding.RMember.isChecked){
+                Toast.makeText(this@LoginActivity, "Member Tidak Bisa Mengubah Password", Toast.LENGTH_SHORT).show()
+            }else if(binding.RMO.isChecked){
+                val intent = Intent(this@LoginActivity, ForgetPasswordMOActivity::class.java)
+                startActivity(intent)
+                finish()
+            }else if(binding.RInstruktur.isChecked) {
+                val intent =
+                    Intent(this@LoginActivity, ForgetPasswordInstrukturActivity::class.java)
+                startActivity(intent)
+                finish()
+            }else{
+                Toast.makeText(this@LoginActivity, "Role Belom Dipilih", Toast.LENGTH_SHORT).show()
+            }
+
+        }
     }
 
     fun loginMember(id: String, password: String) {
@@ -59,7 +77,12 @@ class LoginActivity : AppCompatActivity() {
                 if(responseBody != null){
                     Toast.makeText(this@LoginActivity, "Login Berhasil" , Toast.LENGTH_SHORT).show()
                     val intent = Intent(this@LoginActivity, HomeMemberActivity::class.java)
+                    pref!!.edit().putString("token", responseBody.accessToken).apply()
+                    pref!!.edit().putString("id", responseBody.user?.id).apply()
+                    pref!!.edit().putString("nama", responseBody.user?.nama).apply()
+
                     startActivity(intent)
+                    finish()
                 }else {
                     try {
                         val errorBody = JSONObject(response.errorBody()!!.string())
@@ -105,6 +128,7 @@ class LoginActivity : AppCompatActivity() {
                     pref!!.edit().putInt("id", responseBody.user.id).apply()
                     pref!!.edit().putString("nama", responseBody.user.nama).apply()
                     startActivity(intent)
+                    finish()
                 }else {
                     try {
                         val errorBody = JSONObject(response.errorBody()!!.string())
@@ -144,6 +168,8 @@ class LoginActivity : AppCompatActivity() {
                 val responseBody = response.body()
                 if(responseBody != null){
                     Toast.makeText(this@LoginActivity, "Login Berhasil" , Toast.LENGTH_SHORT).show()
+                    pref!!.edit().putString("token", responseBody.accessToken).apply()
+//                    pref!!.edit().putString("id", responseBody.user.id).apply()
                     val intent = Intent(this@LoginActivity, HomePegawaiActivity::class.java)
                     startActivity(intent)
                 }else {

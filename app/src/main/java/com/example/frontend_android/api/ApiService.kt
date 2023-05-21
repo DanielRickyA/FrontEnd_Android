@@ -1,5 +1,7 @@
 package com.example.frontend_android.api
 
+import com.example.frontend_android.response.BookingKelas.ResponseBookingKelas
+import com.example.frontend_android.response.BookingKelas.ResponseBookingKelasMember
 import com.example.frontend_android.response.IjinInstruktur.ReponseHistoryPerizinan
 import com.example.frontend_android.response.IjinInstruktur.ResponseJadwalInstruktur
 import com.example.frontend_android.response.IjinInstruktur.ResponseRequestPerizinan
@@ -16,6 +18,7 @@ import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.PUT
 
 object ApiConfig {
 
@@ -26,7 +29,7 @@ object ApiConfig {
             .addInterceptor(loggingInterceptor)
             .build()
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.19.214/p3l_backend/public/api/")
+            .baseUrl("http://192.168.18.25/p3l_backend/public/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
@@ -73,4 +76,33 @@ interface ApiService {
     fun getHistoryPerizinan(
         @Header("Authorization") token: String,
     ): Call<ReponseHistoryPerizinan>
+
+    @PUT("ChangePasswordMO")
+    @FormUrlEncoded
+    fun changePasswordMO(
+        @Field("nama") nama: String,
+        @Field("password") password: String,
+    ): Call<ResponseLoginPegawai>
+
+    @PUT("ChangePasswordInsturktur")
+    @FormUrlEncoded
+    fun changePasswordInstruktur(
+        @Field("nama") nama: String,
+        @Field("password") password: String,
+    ): Call<ResponseLoginInstruktur>
+
+    @GET("JadwalHarianM")
+    fun showJadwalHarianM(
+        @Header("Authorization") token: String,
+    ): Call<ResponseBookingKelas>
+
+    @POST("PresensiBookingKelas")
+    @FormUrlEncoded
+    fun bookingKelas(
+        @Header("Authorization") token: String,
+        @Field("id_jadwal_harian") id_jadwal: Int,
+        @Field("id_member") id_member: String,
+        @Field("tarif") tarif: Int,
+    ): Call<ResponseBookingKelasMember>
+
 }

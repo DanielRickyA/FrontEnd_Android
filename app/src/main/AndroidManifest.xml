@@ -15,6 +15,12 @@
         android:theme="@style/Theme.FrontEndAndroid"
         tools:targetApi="31">
         <activity
+            android:name=".auth.ForgetPasswordInstrukturActivity"
+            android:exported="false" />
+        <activity
+            android:name=".auth.ForgetPasswordMOActivity"
+            android:exported="false" />
+        <activity
             android:name=".HomeMemberActivity"
             android:exported="false" />
         <activity

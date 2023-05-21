@@ -8,6 +8,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import com.example.frontend_android.member.ShowBookingKelas
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeMemberActivity : AppCompatActivity() {
@@ -26,10 +27,10 @@ class HomeMemberActivity : AppCompatActivity() {
                 changeFragment(TimeTablesFragment())
                 true
             }
-//            R.id.shopping->{
-//                changeFragment(SewaKendaraanFragment())
-//                true
-//            }
+            R.id.shopping->{
+                changeFragment(ShowBookingKelas())
+                true
+            }
 //            R.id.Location->{
 //                changeFragment(LocationFragment())
 //                true

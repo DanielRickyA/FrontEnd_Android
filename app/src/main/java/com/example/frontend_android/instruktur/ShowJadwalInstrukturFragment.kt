@@ -61,9 +61,6 @@ class ShowJadwalInstrukturFragment : Fragment() {
                     if(responseBody != null){
 
                         loadRecycleView(responseBody.data as ArrayList<DataItem>)
-                        println(responseBody.data)
-
-
                         Toast.makeText(activity, "Berhasil Mendapatkan Data", Toast.LENGTH_SHORT).show()
 
                     }else{

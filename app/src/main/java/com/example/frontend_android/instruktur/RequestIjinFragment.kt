@@ -1,5 +1,6 @@
 package com.example.frontend_android.instruktur
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -9,10 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.frontend_android.HomeInstrukturActivity
-import com.example.frontend_android.R
+
 import com.example.frontend_android.api.ApiConfig
 import com.example.frontend_android.databinding.FragmentRequestIjinBinding
-import com.example.frontend_android.databinding.FragmentShowJadwalInstrukturBinding
+
 import com.example.frontend_android.response.IjinInstruktur.ResponseRequestPerizinan
 import org.json.JSONObject
 import retrofit2.Call
@@ -38,6 +39,7 @@ class RequestIjinFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?){
         super.onViewCreated(view, savedInstanceState)
         pref = activity?.getSharedPreferences("prefId", Context.MODE_PRIVATE)
@@ -49,8 +51,8 @@ class RequestIjinFragment : Fragment() {
 
         binding.btnSave.setOnClickListener {
         val id_jadwal = sp?.getInt("id", -1)!!
-        val keterangan = binding.keterangan.editText?.text.toString()!!
-            println(id_jadwal)
+        val keterangan = binding.keterangan.editText?.text.toString()
+
             requestIjin(id_jadwal, keterangan)
         }
     }
@@ -62,6 +64,7 @@ class RequestIjinFragment : Fragment() {
             id_jadwal,
             keterangan,
         ).enqueue(object : Callback<ResponseRequestPerizinan>{
+            @SuppressLint("SuspiciousIndentation")
             override fun onResponse(
                 call: Call<ResponseRequestPerizinan>,
                 response: Response<ResponseRequestPerizinan>
@@ -74,7 +77,8 @@ class RequestIjinFragment : Fragment() {
                         try {
                             val errorBody = JSONObject(response.errorBody()!!.string())
                             if (response.code() == 400) {
-                                Toast.makeText(requireContext(), "Keterangan is required", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(requireContext(), errorBody.getJSONArray("id_jadwal")[0].toString(), Toast.LENGTH_SHORT).show()
+                                Toast.makeText(requireContext(), errorBody.getJSONArray("keterangan")[0].toString(), Toast.LENGTH_SHORT).show()
                             }else if (response.code() == 404){
                                 Toast.makeText(requireContext(), "Jadwal tidak ditemukan", Toast.LENGTH_SHORT).show()
                             }
