@@ -8,6 +8,9 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import com.example.frontend_android.mo.ShowJadwalToday
+import com.example.frontend_android.mo.ShowPresensi
+import com.example.frontend_android.mo.ShowPresensiAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomePegawaiActivity : AppCompatActivity() {
@@ -27,14 +30,14 @@ class HomePegawaiActivity : AppCompatActivity() {
                 changeFragment(TimeTablesFragment())
                 true
             }
-//            R.id.shopping->{
-//                changeFragment(SewaKendaraanFragment())
-//                true
-//            }
-//            R.id.Location->{
-//                changeFragment(LocationFragment())
-//                true
-//            }
+            R.id.presensiInstruktur->{
+                changeFragment(ShowJadwalToday())
+                true
+            }
+            R.id.presensiAkhirInstruktur->{
+                changeFragment(ShowPresensi())
+                true
+            }
 //            R.id.profile->{
 //                changeFragment(ProfileFragment())
 //                true

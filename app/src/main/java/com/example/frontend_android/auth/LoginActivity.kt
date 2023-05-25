@@ -31,6 +31,7 @@ class LoginActivity : AppCompatActivity() {
         binding =ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         pref = getSharedPreferences("prefId", Context.MODE_PRIVATE)
+
         binding.btnLogin.setOnClickListener{
             val username = binding.inputUsername.editText?.text.toString()
             val password = binding.inputPassword.editText?.text.toString()

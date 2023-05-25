@@ -8,7 +8,9 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import com.example.frontend_android.member.BookingGymFragment
 import com.example.frontend_android.member.ShowBookingKelas
+import com.example.frontend_android.member.showBookingGym
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeMemberActivity : AppCompatActivity() {
@@ -27,14 +29,14 @@ class HomeMemberActivity : AppCompatActivity() {
                 changeFragment(TimeTablesFragment())
                 true
             }
-            R.id.shopping->{
+            R.id.bookingkelas->{
                 changeFragment(ShowBookingKelas())
                 true
             }
-//            R.id.Location->{
-//                changeFragment(LocationFragment())
-//                true
-//            }
+            R.id.bookingGym->{
+                changeFragment(showBookingGym())
+                true
+            }
 //            R.id.profile->{
 //                changeFragment(ProfileFragment())
 //                true

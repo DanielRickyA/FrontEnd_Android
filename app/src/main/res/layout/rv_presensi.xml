@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="2dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginStart="20dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        >
+
+
+        <TextView
+            android:id="@+id/tvNamaInstruktur"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Nama Ins"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvTanggal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tanggal"
+            app:layout_constraintStart_toStartOf="@+id/tvNamaInstruktur"
+            app:layout_constraintTop_toBottomOf="@+id/tvNamaInstruktur" />
+
+        <TextView
+            android:id="@+id/tvTextJamMulai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="3dp"
+            android:text="Jam Mulai:"
+            app:layout_constraintStart_toEndOf="@+id/tvNamaInstruktur"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvTextJamSelesai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jam Selesai:"
+            app:layout_constraintStart_toStartOf="@+id/tvTextJamMulai"
+            app:layout_constraintTop_toBottomOf="@+id/tvTextJamMulai" />
+
+        <TextView
+            android:id="@+id/tvJamMulai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="@+id/tvTextJamMulai"
+            app:layout_constraintStart_toEndOf="@+id/tvTextJamMulai"
+            app:layout_constraintTop_toTopOf="@+id/tvTextJamMulai" />
+
+        <TextView
+            android:id="@+id/tvJamSelesai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="@+id/tvTextJamSelesai"
+            app:layout_constraintStart_toEndOf="@+id/tvTextJamSelesai"
+            app:layout_constraintTop_toBottomOf="@+id/tvTextJamMulai" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

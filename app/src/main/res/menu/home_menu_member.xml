@@ -6,10 +6,15 @@
         android:icon="@drawable/ic_home_24"
         android:title="Home"/>
     <item
-        android:id="@+id/shopping"
+        android:id="@+id/bookingkelas"
         android:enabled="true"
         android:icon="@drawable/ic_calender_24"
-        android:title="Booking"/>
+        android:title="Booking Kelas"/>
+    <item
+        android:id="@+id/bookingGym"
+        android:enabled="true"
+        android:icon="@drawable/ic_calender_24"
+        android:title="Booking Gym"/>
     <item
         android:id="@+id/profile"
         android:enabled="true"

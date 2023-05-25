@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".member.BookingKelasMemberFragment">
-
+    tools:context=".mo.SetAkhirPresensi">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/namaInstruktur"
@@ -72,25 +71,25 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tvPembayaran"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:id="@+id/tvJamKelas"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginHorizontal="16dp"
-        android:hint="Tipe Pembayaran"
-        app:errorEnabled="true"
+        android:hint="Jam Mulai Kelas"
+        app:errorEnabled="false"
+        android:enabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNamaKelas">
 
-        <AutoCompleteTextView
-            android:id="@+id/ed_pembayaran"
+        <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="none" />
+            android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -101,7 +100,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="8dp"
-        android:text="Booking Kelas"
+        android:text="Presensi Instruktur"
         android:textSize="28dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -116,10 +115,10 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="8dp"
-        android:text="Save"
+        android:text="Set Jam Selesai"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPembayaran" />
+        app:layout_constraintTop_toBottomOf="@+id/tvJamKelas" />
 
     <Button
         android:id="@+id/btnBack"

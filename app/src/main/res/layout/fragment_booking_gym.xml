@@ -1,32 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".member.BookingKelasMemberFragment">
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/namaInstruktur"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:enabled="false"
-        android:hint="Nama Instruktur"
-        app:errorEnabled="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tanggalJadwal">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text" />
-    </com.google.android.material.textfield.TextInputLayout>
+    tools:context=".member.BookingGymFragment">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tanggalJadwal"
@@ -34,8 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="100dp"
         android:enabled="false"
         android:hint="Tanggal Jadwal"
         app:errorEnabled="true"
@@ -50,48 +28,31 @@
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tvNamaKelas"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:enabled="false"
-        android:hint="Nama Kelas"
-        app:errorEnabled="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/namaInstruktur">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text" />
-    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tvPembayaran"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginHorizontal="16dp"
-        android:hint="Tipe Pembayaran"
+        android:hint="Sesi Kelas Gym"
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@+id/tanggalJadwal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvNamaKelas">
+        tools:layout_editor_absoluteY="214dp">
 
         <AutoCompleteTextView
-            android:id="@+id/ed_pembayaran"
+            android:id="@+id/ed_sesi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="none" />
     </com.google.android.material.textfield.TextInputLayout>
+
 
     <TextView
         android:id="@+id/judul"
@@ -99,7 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="128dp"
         android:layout_marginEnd="8dp"
         android:text="Booking Kelas"
         android:textSize="28dp"
@@ -120,6 +81,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPembayaran" />
+
+    <Button
+        android:id="@+id/btnTanggal"
+        android:layout_width="44dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="3dp"
+        android:drawableLeft="@drawable/ic_calender_24"
+        android:drawableTint="@color/white"
+        android:paddingHorizontal="10dp"
+        app:cornerRadius="9999dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tanggalJadwal"
+        app:layout_constraintStart_toEndOf="@+id/tanggalJadwal"
+        app:layout_constraintTop_toTopOf="@+id/tanggalJadwal"
+        app:layout_constraintVertical_bias="0.26" />
 
     <Button
         android:id="@+id/btnBack"

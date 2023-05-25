@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".member.ShowBookingKelas">
-
+    tools:context=".mo.ShowJadwalToday">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_jadwal_instruktur"
@@ -33,18 +32,6 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnHistory"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:layout_width="144dp"
-        android:layout_height="39dp"
-        android:text="Check History"
-        android:textColor="#554C3B"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

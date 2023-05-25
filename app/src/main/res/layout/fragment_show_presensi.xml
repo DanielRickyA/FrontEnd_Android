@@ -4,11 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".member.ShowBookingKelas">
-
+    tools:context=".mo.ShowPresensi">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_jadwal_instruktur"
+        android:id="@+id/rv_presensi"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="24dp"
@@ -18,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="0.0"
-        tools:listitem="@layout/rv_jadwal_kelas" />
+        tools:listitem="@layout/rv_presensi" />
 
     <TextView
         android:id="@+id/textView"
@@ -35,7 +34,6 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/btnHistory"
         style="@style/Widget.MaterialComponents.Button.TextButton"

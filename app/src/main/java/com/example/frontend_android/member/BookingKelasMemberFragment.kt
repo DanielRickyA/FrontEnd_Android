@@ -63,7 +63,7 @@ class BookingKelasMemberFragment : Fragment() {
             println("id_jadwal_harian: $id_jadwal_harian")
             println("id_member: $id_member")
             println("tarif: $tarif")
-            bookingKelas(id_jadwal_harian, id_member, tarif)
+            bookingKelas(id_jadwal_harian, id_member, binding.edPembayaran.text.toString())
         }
 
         binding.btnBack.setOnClickListener {
@@ -72,43 +72,35 @@ class BookingKelasMemberFragment : Fragment() {
     }
 
 
-    fun setExposedDropdownMenu(){
+    fun setExposedDropdownMenu() {
         val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
             requireActivity(),
-            R.layout.item_list, PEMBAYARAN)
+            R.layout.item_list, PEMBAYARAN
+        )
         binding.edPembayaran.setAdapter(adapter)
-
-        binding.edPembayaran.setOnItemClickListener { _, _, position, _ ->
-            val selectedValue = adapter.getItem(position)
-
-            when (selectedValue) {
-                "Deposit Kelas" -> {
-                    tarif = 0;
-                }
-                "Deposit Uang" -> {
-                    tarif = 1;
-                }
-            }
-        }
     }
 
-    fun bookingKelas(id_jadwal: Int, id_member: String, tarif: Int) {
+
+    fun bookingKelas(id_jadwal: Int, id_member: String, jenis_pembayaran: String) {
         val client = ApiConfig.getApiService()
         client.bookingKelas(
             "Bearer $token",
             id_jadwal,
             id_member,
-            tarif
+            jenis_pembayaran,
+
 
         ).enqueue(object : Callback<ResponseBookingKelasMember>{
             override fun onResponse(
                 call: Call<ResponseBookingKelasMember>,
                 response: Response<ResponseBookingKelasMember>
             ) {
-                val responseBody = response.body()
-                if(responseBody != null){
-                    Toast.makeText(context, "Berhasil Booking Kelas", Toast.LENGTH_SHORT).show()
-                }else{
+                if(response.isSuccessful){
+                        val responseBody = response.body()
+                        if(responseBody != null){
+                            Toast.makeText(context, "Berhasil Booking Kelas", Toast.LENGTH_SHORT).show()
+                        }
+                } else{
                     val errorBody = JSONObject(response.errorBody()?.string())
                     Toast.makeText(context, errorBody.getString("message"), Toast.LENGTH_SHORT).show()
                 }
