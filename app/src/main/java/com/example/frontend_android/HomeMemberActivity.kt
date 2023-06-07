@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment
 import com.example.frontend_android.member.BookingGymFragment
 import com.example.frontend_android.member.ShowBookingKelas
 import com.example.frontend_android.member.showBookingGym
+import com.example.frontend_android.profil.profilMember.ProfilMember
+import com.example.frontend_android.profil.profilMember.ProfilMemberNew
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeMemberActivity : AppCompatActivity() {
@@ -37,10 +39,10 @@ class HomeMemberActivity : AppCompatActivity() {
                 changeFragment(showBookingGym())
                 true
             }
-//            R.id.profile->{
-//                changeFragment(ProfileFragment())
-//                true
-//            }
+            R.id.profile->{
+                changeFragment(ProfilMemberNew())
+                true
+            }
             else->false
         }
         }

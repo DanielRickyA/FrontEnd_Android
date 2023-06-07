@@ -17,7 +17,7 @@ data class DataItemHistory(
 	val tanggalBuatIzin: String,
 
 	@field:SerializedName("tanggal_konfirm")
-	val tanggalKonfirm: Any,
+	val tanggalKonfirm: String?,
 
 	@field:SerializedName("tanggal_izin")
 	val tanggalIzin: String,

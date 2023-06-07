@@ -61,4 +61,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleJadwal"
         tools:listitem="@layout/rv_jadwal_kelas" />
+
+    <include
+        android:id="@+id/loading"
+        layout="@layout/layout_loading"
+        android:visibility="gone"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

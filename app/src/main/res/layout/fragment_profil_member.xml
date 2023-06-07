@@ -4,7 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".profil.profilInstruktur.">
+    tools:context=".profil.profilMember.ProfilMember">
+
+    <!-- TODO: Update blank fragment layout -->
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/profilCard"
@@ -45,25 +48,36 @@
                 style="@style/TextAppearance.AppCompat.Display1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
                 android:text="Daniel Ricky Alexander"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/icon"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/icon"
                 app:layout_constraintTop_toTopOf="@+id/icon"
-                app:layout_constraintVertical_bias="0.29000002" />
+                app:layout_constraintVertical_bias="0.24000001" />
 
+            <TextView
+                android:id="@+id/tvIdMember"
+                style="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="23.03.01"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/tvNama"
+                app:layout_constraintTop_toBottomOf="@+id/tvNama" />
 
             <TextView
                 android:id="@+id/tvstatus"
                 style="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Jumlah Terlambat: "
+                android:text="Active"
                 android:textColor="#FFFFFF"
-                app:layout_constraintStart_toStartOf="@+id/tvNama"
-                app:layout_constraintTop_toBottomOf="@+id/tvNama" />
+                app:layout_constraintStart_toStartOf="@+id/tvIdMember"
+                app:layout_constraintTop_toBottomOf="@+id/tvIdMember" />
 
             <Button
                 android:id="@+id/btnLogout"
@@ -78,16 +92,6 @@
                 app:cornerRadius="9999dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvAkumulasi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="6000"
-                android:textColor="#FFFFFF"
-                app:layout_constraintBottom_toBottomOf="@+id/tvstatus"
-                app:layout_constraintStart_toEndOf="@+id/tvstatus"
-                app:layout_constraintTop_toTopOf="@+id/tvstatus" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -105,8 +109,8 @@
 
     <TextView
         android:id="@+id/tvAlamat"
-        android:layout_width="314dp"
-        android:layout_height="56dp"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:text="Jl. Monjali No.14, RW.8, Nandan, Sariharjo, Kec. Ngaglik, Kabupaten Sleman, Daerah Istimewa Yogyakarta"
         app:layout_constraintBottom_toBottomOf="@+id/iconMail"
@@ -138,8 +142,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:drawableLeft="@drawable/ic_calender_24"
-        app:layout_constraintStart_toStartOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintStart_toStartOf="@+id/ic_Expired"
+        app:layout_constraintTop_toBottomOf="@+id/ic_Expired" />
 
     <TextView
         android:id="@+id/textTGL"
@@ -162,26 +166,97 @@
         app:layout_constraintTop_toTopOf="@+id/textTGL" />
 
     <TextView
-        android:id="@+id/tvEmail"
+        android:id="@+id/ic_Expired"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:drawableLeft="@drawable/ic_calender_24"
+        app:layout_constraintStart_toStartOf="@+id/ic_depo"
+        app:layout_constraintTop_toBottomOf="@+id/ic_depo" />
+
+    <TextView
+        android:id="@+id/textTGLExpired"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-
-        android:text="KurniawanSaputra77@gmail.com"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView5"
-        app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toTopOf="@+id/textView5" />
+        android:text="Masa Berlaku: "
+        app:layout_constraintBottom_toBottomOf="@+id/ic_Expired"
+        app:layout_constraintStart_toEndOf="@+id/ic_Expired"
+        app:layout_constraintTop_toTopOf="@+id/ic_Expired"
+        app:layout_constraintVertical_bias="0.4" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/tvTanggalExpired"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2023-03-01"
+        app:layout_constraintBottom_toBottomOf="@+id/textTGLExpired"
+        app:layout_constraintStart_toEndOf="@+id/textTGLExpired"
+        app:layout_constraintTop_toTopOf="@+id/textTGLExpired" />
+
+    <TextView
+        android:id="@+id/ic_depo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="32dp"
-        android:drawableLeft="@drawable/ic_email_24"
+        android:layout_marginTop="24dp"
+        android:drawableLeft="@drawable/ic_money_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profilCard" />
+
+    <TextView
+        android:id="@+id/textRp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="Rp."
+        app:layout_constraintBottom_toBottomOf="@+id/ic_depo"
+        app:layout_constraintStart_toEndOf="@+id/ic_depo"
+        app:layout_constraintTop_toTopOf="@+id/ic_depo" />
+
+    <TextView
+        android:id="@+id/tvDepositUang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="7200000"
+        app:layout_constraintBottom_toBottomOf="@+id/textRp"
+        app:layout_constraintStart_toEndOf="@+id/textRp"
+        app:layout_constraintTop_toTopOf="@+id/textRp" />
+
+    <Button
+        android:id="@+id/btnHistoryKelas"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="#073687"
+        android:text="History Kelas"
+        app:layout_constraintBottom_toBottomOf="@+id/btnCekDepo"
+        app:layout_constraintEnd_toStartOf="@+id/btnHistoryGym"
+        app:layout_constraintStart_toEndOf="@+id/btnCekDepo"
+        app:layout_constraintTop_toTopOf="@+id/btnCekDepo" />
+
+    <Button
+        android:id="@+id/btnCekDepo"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="84dp"
+        android:backgroundTint="#073687"
+        android:text="Cek Deposit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAlamat" />
+
+    <Button
+        android:id="@+id/btnHistoryGym"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="36dp"
+        android:backgroundTint="#073687"
+        android:text="History Gym"
+        app:layout_constraintBottom_toBottomOf="@+id/btnHistoryKelas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnHistoryKelas" />
 
     <TextView
         android:id="@+id/textView17"
@@ -192,28 +267,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/btnCekHistoryPerizinan"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="80dp"
-        android:backgroundTint="#073687"
-        android:text="Cek History Perizinan"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iconMail" />
-
-    <Button
-        android:id="@+id/btnCekHistoryKelas"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="32dp"
-        android:backgroundTint="#073687"
-        android:text="Cek History Kelas"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.588"
-        app:layout_constraintStart_toEndOf="@+id/btnCekHistoryPerizinan"
-        app:layout_constraintTop_toTopOf="@+id/btnCekHistoryPerizinan" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

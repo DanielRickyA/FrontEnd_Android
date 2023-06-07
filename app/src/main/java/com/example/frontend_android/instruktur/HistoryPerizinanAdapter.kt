@@ -21,6 +21,7 @@ class HistoryPerizinanAdapter(
                 Keterangan.text = data.keterangan
                 tanggalIzin.text = data.tanggalIzin
                 tanggalBuatIzin.text = data.tanggalBuatIzin
+                tvTanggalKonfirm.text = data.tanggalKonfirm
             }
 
 

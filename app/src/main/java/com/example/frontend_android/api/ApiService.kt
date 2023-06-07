@@ -12,6 +12,11 @@ import com.example.frontend_android.response.login.ResponseLoginPegawai
 import com.example.frontend_android.response.presensiInstruktur.ResponseGetJadwalToday
 import com.example.frontend_android.response.presensiInstruktur.ResponseJamMulai
 import com.example.frontend_android.response.presensiInstruktur.ResponsePresensi
+import com.example.frontend_android.response.profilInstruktur.ResponseHistoryKelasInstruktur
+import com.example.frontend_android.response.profilInstruktur.ResponseProfilInstruktur
+import com.example.frontend_android.response.profilMember.ResponseCekDepoMember
+import com.example.frontend_android.response.profilMember.ResponseHistoryKelas
+import com.example.frontend_android.response.profilMember.ResponseProfilMember
 import com.example.frontend_android.response.promo.ResponsePromo
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -30,7 +35,7 @@ object ApiConfig {
             .addInterceptor(loggingInterceptor)
             .build()
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://10.53.6.46/p3l_backend/public/api/")
+            .baseUrl("http://192.168.18.25/p3l_backend/public/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
@@ -157,6 +162,36 @@ interface ApiService {
     fun getPresensiAllToday(
         @Header("Authorization") token: String,
     ): Call<ResponsePresensi>
+
+    @GET("Member/{id}")
+    fun getMember(
+        @Header("Authorization") token: String,
+        @Path("id") id: String,
+    ): Call<ResponseProfilMember>
+
+    @GET("cekDepositM/{id}")
+    fun getDepoKelas(
+        @Header("Authorization") token: String,
+        @Path("id") id: String,
+    ): Call<ResponseCekDepoMember>
+
+    @GET("cekHistoryKelas/{id}")
+    fun getHistoryKelas(
+        @Header("Authorization") token: String,
+        @Path("id") id: String,
+    ): Call<ResponseHistoryKelas>
+
+    @GET("Instruktur/{id}")
+    fun getInstruktur(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int,
+    ): Call<ResponseProfilInstruktur>
+
+    @GET("cekHistoryKelasInstruktur")
+    fun getHistoryKelasInstruktur(
+        @Header("Authorization") token: String,
+    ): Call<ResponseHistoryKelasInstruktur>
+
 
 
 }

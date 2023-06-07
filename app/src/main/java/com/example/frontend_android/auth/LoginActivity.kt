@@ -67,7 +67,7 @@ class LoginActivity : AppCompatActivity() {
 
     fun loginMember(id: String, password: String) {
         val client = ApiConfig.getApiService()
-
+        binding.loading.layoutLoading.visibility = android.view.View.VISIBLE
         client.loginMember(id, password).enqueue(object: Callback<ResponseLoginMember>{
             override fun onResponse(
                 call: Call<ResponseLoginMember>,
@@ -81,10 +81,10 @@ class LoginActivity : AppCompatActivity() {
                     pref!!.edit().putString("token", responseBody.accessToken).apply()
                     pref!!.edit().putString("id", responseBody.user?.id).apply()
                     pref!!.edit().putString("nama", responseBody.user?.nama).apply()
-
                     startActivity(intent)
                     finish()
                 }else {
+                    binding.loading.layoutLoading.visibility = android.view.View.GONE
                     try {
                         val errorBody = JSONObject(response.errorBody()!!.string())
                         if (response.code() == 401) {
@@ -107,6 +107,7 @@ class LoginActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<ResponseLoginMember>, t: Throwable) {
+                binding.loading.layoutLoading.visibility = android.view.View.GONE
                 Toast.makeText(this@LoginActivity, "Internet Mati", Toast.LENGTH_SHORT).show()
             }
 
@@ -115,7 +116,7 @@ class LoginActivity : AppCompatActivity() {
 
     fun loginInstruktur(nama: String, password: String){
         val client = ApiConfig.getApiService()
-
+        binding.loading.layoutLoading.visibility = android.view.View.VISIBLE
         client.loginInstruktur(nama, password).enqueue(object: Callback<ResponseLoginInstruktur>{
             override fun onResponse(
                 call: Call<ResponseLoginInstruktur>,
@@ -131,6 +132,7 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(intent)
                     finish()
                 }else {
+                    binding.loading.layoutLoading.visibility = android.view.View.GONE
                     try {
                         val errorBody = JSONObject(response.errorBody()!!.string())
                         if (response.code() == 401) {
@@ -161,6 +163,7 @@ class LoginActivity : AppCompatActivity() {
 
     fun loginPegawai(nama: String, password: String){
         val client = ApiConfig.getApiService()
+        binding.loading.layoutLoading.visibility = android.view.View.VISIBLE
         client.loginPegawai(nama, password).enqueue(object: Callback<ResponseLoginPegawai>{
             override fun onResponse(
                 call: Call<ResponseLoginPegawai>,
@@ -174,6 +177,7 @@ class LoginActivity : AppCompatActivity() {
                     val intent = Intent(this@LoginActivity, HomePegawaiActivity::class.java)
                     startActivity(intent)
                 }else {
+                    binding.loading.layoutLoading.visibility = android.view.View.GONE
                     try {
                         val errorBody = JSONObject(response.errorBody()!!.string())
                         if (response.code() == 401) {

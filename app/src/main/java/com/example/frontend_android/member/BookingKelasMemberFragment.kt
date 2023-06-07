@@ -53,9 +53,11 @@ class BookingKelasMemberFragment : Fragment() {
         setExposedDropdownMenu()
         println(sp?.getString("tanggal", "").toString())
         println(sp?.getString("tanggal", "").toString())
+
         binding.tanggalJadwal.editText?.setText(sp?.getString("tanggal", "").toString())
         binding.namaInstruktur.editText?.setText(sp?.getString("instruktur", "").toString())
         binding.tvNamaKelas.editText?.setText(sp?.getString("kelas", "").toString())
+
         val id_member = pref?.getString("id", " ").toString()
         val id_jadwal_harian = sp?.getInt("id", -1)!!
 
