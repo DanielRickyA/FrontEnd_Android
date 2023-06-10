@@ -1,7 +1,9 @@
 package com.example.frontend_android.api
 
+import com.example.frontend_android.response.BookingKelas.ResponseBatalKelas
 import com.example.frontend_android.response.BookingKelas.ResponseBookingKelas
 import com.example.frontend_android.response.BookingKelas.ResponseBookingKelasMember
+import com.example.frontend_android.response.BookingKelas.ResponsePresensiMember
 import com.example.frontend_android.response.IjinInstruktur.ReponseHistoryPerizinan
 import com.example.frontend_android.response.IjinInstruktur.ResponseJadwalInstruktur
 import com.example.frontend_android.response.IjinInstruktur.ResponseRequestPerizinan
@@ -12,6 +14,8 @@ import com.example.frontend_android.response.login.ResponseLoginPegawai
 import com.example.frontend_android.response.presensiInstruktur.ResponseGetJadwalToday
 import com.example.frontend_android.response.presensiInstruktur.ResponseJamMulai
 import com.example.frontend_android.response.presensiInstruktur.ResponsePresensi
+import com.example.frontend_android.response.presensiKelas.ResponseDataKelasMember
+import com.example.frontend_android.response.presensiKelas.ResponseKelasToday
 import com.example.frontend_android.response.profilInstruktur.ResponseHistoryKelasInstruktur
 import com.example.frontend_android.response.profilInstruktur.ResponseProfilInstruktur
 import com.example.frontend_android.response.profilMember.ResponseCekDepoMember
@@ -181,6 +185,12 @@ interface ApiService {
         @Path("id") id: String,
     ): Call<ResponseHistoryKelas>
 
+    @GET("cekHBookingKelasMember/{id}")
+    fun getDataBookingKelasMember(
+        @Header("Authorization") token: String,
+        @Path("id") id: String,
+    ): Call<ResponseHistoryKelas>
+
     @GET("Instruktur/{id}")
     fun getInstruktur(
         @Header("Authorization") token: String,
@@ -191,6 +201,35 @@ interface ApiService {
     fun getHistoryKelasInstruktur(
         @Header("Authorization") token: String,
     ): Call<ResponseHistoryKelasInstruktur>
+
+    @DELETE("cekHBookingKelasMember/{id}")
+    fun batalKelas(
+        @Header("Authorization") token: String,
+        @Path("id") id: String,
+    ): Call<ResponseBatalKelas>
+
+    @GET("getJadwalKelasToday")
+    fun GetKelasInstrukturToday(
+        @Header("Authorization") token: String,
+    ): Call<ResponseKelasToday>
+
+    @GET("getAllMemberKelas/{id}")
+    fun getDataMember(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int,
+    ): Call<ResponseDataKelasMember>
+
+    @PATCH("setPresensiMember/{id}")
+    fun setPresensiMember(
+        @Header("Authorization") token: String,
+        @Path("id") id: String,
+    ): Call<ResponsePresensiMember>
+
+    @PATCH("setPresensiMemberTH/{id}")
+    fun setPresensiMemberTH(
+        @Header("Authorization") token: String,
+        @Path("id") id: String,
+    ): Call<ResponsePresensiMember>
 
 
 

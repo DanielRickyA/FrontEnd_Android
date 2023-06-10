@@ -4,11 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".member.showBookingGym">
+    tools:context=".instruktur.PresensiMember">
 
-    <!-- TODO: Update blank fragment layout -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_booking_gym"
+        android:id="@+id/rv_jadwal_instruktur"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="24dp"
@@ -17,8 +16,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:listitem="@layout/rv_booking_gym" />
-
+        tools:listitem="@layout/rv_data_member" />
 
     <TextView
         android:id="@+id/textView"
@@ -26,27 +24,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="44dp"
         android:layout_marginEnd="8dp"
-        android:text="Booking Gym"
+        android:text="Presensi Member"
         android:textSize="28dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="16dp"
-        android:src="@drawable/ic_add_24"
-        app:tint="@color/white"
-        app:backgroundTint="@color/myTheme_blue"
+    <Button
+        android:id="@+id/btnBack"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="81dp"
+        android:layout_height="46dp"
+        android:text="back"
+        android:textColor="#554C3B"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.003"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.example.frontend_android.profil.profilMember
+package com.example.frontend_android.instruktur
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -9,19 +9,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.frontend_android.HomeMemberActivity
-import com.example.frontend_android.R
+import com.example.frontend_android.HomeInstrukturActivity
+
 import com.example.frontend_android.api.ApiConfig
-import com.example.frontend_android.databinding.FragmentCekHistoryKelasBinding
-import com.example.frontend_android.response.profilMember.DataHistoryKelas
-import com.example.frontend_android.response.profilMember.ResponseHistoryKelas
+import com.example.frontend_android.databinding.FragmentJadwalKelasInsturkturBinding
+import com.example.frontend_android.response.presensiKelas.DataItem
+
+
+import com.example.frontend_android.response.presensiKelas.ResponseKelasToday
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CekHistoryKelas : Fragment() {
-    private var _binding: FragmentCekHistoryKelasBinding? = null
+
+class JadwalKelasInsturktur : Fragment() {
+    private var _binding : FragmentJadwalKelasInsturkturBinding? = null
     private val binding get() = _binding!!
     var pref: SharedPreferences? = null
     var sp: SharedPreferences? = null
@@ -32,7 +35,7 @@ class CekHistoryKelas : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentCekHistoryKelasBinding.inflate(inflater, container, false)
+        _binding = FragmentJadwalKelasInsturkturBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -40,29 +43,25 @@ class CekHistoryKelas : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         pref = activity?.getSharedPreferences("prefId", Context.MODE_PRIVATE)
         token = pref?.getString("token", "").toString()
-        val id = pref?.getString("id", " ").toString()
-        getHistoryKelas(id)
+        sp = requireActivity().getSharedPreferences("tanggalId", Context.MODE_PRIVATE)
+        getJadwalInstruktur()
 
-        binding.btnBack.setOnClickListener {
-            (activity as HomeMemberActivity).changeFragment(ProfilMemberNew())
-        }
+
     }
 
-    fun getHistoryKelas(id: String){
+    fun getJadwalInstruktur(){
         val client = ApiConfig.getApiService()
-        client.getHistoryKelas(
-            "Bearer $token",
-            id
-        ).enqueue(object : Callback<ResponseHistoryKelas> {
+        client.GetKelasInstrukturToday(
+            "Bearer $token"
+        ).enqueue(object : Callback<ResponseKelasToday>{
             override fun onResponse(
-                call: Call<ResponseHistoryKelas>,
-                response: Response<ResponseHistoryKelas>
+                call: Call<ResponseKelasToday>,
+                response: Response<ResponseKelasToday>
             ) {
                 if(response.isSuccessful){
                     val responseBody = response.body()
                     if(responseBody != null){
-                        Toast.makeText(context, responseBody.message, Toast.LENGTH_SHORT).show()
-                        loadRecycleView(responseBody.data as ArrayList<DataHistoryKelas>)
+                        loadRecycleView(responseBody.data as ArrayList<DataItem>)
                     }
                 }else{
                     val errorBody = JSONObject(response.errorBody()?.string())
@@ -70,17 +69,26 @@ class CekHistoryKelas : Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<ResponseHistoryKelas>, t: Throwable) {
-                TODO("Not yet implemented")
+            override fun onFailure(call: Call<ResponseKelasToday>, t: Throwable) {
+                Toast.makeText(context, t.message, Toast.LENGTH_SHORT).show()
             }
 
         })
     }
 
-    fun loadRecycleView(item: ArrayList<DataHistoryKelas>) {
-        val adapter = CekHistoryKelasAdapter(item)
-        binding.rvJadwalInstruktur.adapter = adapter
+    fun loadRecycleView(item: ArrayList<DataItem>){
+        val adapter = JadwalKelasInstrukturAdapter(item)
+        adapter.setCallback(object : JadwalKelasInstrukturAdapter.ClickInterface{
+            override fun onClickItem(data: DataItem) {
+                Toast.makeText(activity, "Berhasil", Toast.LENGTH_SHORT).show()
+                sp!!.edit().putInt("id", data.id).apply()
+
+                (activity as HomeInstrukturActivity).changeFragment(PresensiMember())
+            }
+
+        })
         binding.rvJadwalInstruktur.layoutManager = LinearLayoutManager(activity)
+        binding.rvJadwalInstruktur.adapter = adapter
     }
 
 

@@ -8,6 +8,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import com.example.frontend_android.instruktur.JadwalKelasInsturktur
 import com.example.frontend_android.instruktur.ShowJadwalInstrukturFragment
 import com.example.frontend_android.profil.profilInstruktur.ProfilInstruktur
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -32,10 +33,10 @@ class HomeInstrukturActivity : AppCompatActivity() {
                 changeFragment(ShowJadwalInstrukturFragment())
                 true
             }
-//            R.id.Location->{
-//                changeFragment(LocationFragment())
-//                true
-//            }
+            R.id.presensi->{
+                changeFragment(JadwalKelasInsturktur())
+                true
+            }
             R.id.profile->{
                 changeFragment(ProfilInstruktur())
                 true

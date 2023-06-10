@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="2dp"
+    android:layout_marginHorizontal="10dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp">
+
+
+        <TextView
+            android:id="@+id/tvNamaKelas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Trampoline Workout*
+"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Instruktur: "
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/textView9"
+            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+        <TextView
+            android:id="@+id/tvInstruktur"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gilang Pratama"
+            app:layout_constraintBottom_toBottomOf="@+id/textView25"
+            app:layout_constraintStart_toEndOf="@+id/textView25"
+            app:layout_constraintTop_toTopOf="@+id/textView25" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tanggal: "
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/tvNamaKelas"
+            app:layout_constraintTop_toBottomOf="@+id/tvNamaKelas" />
+
+        <TextView
+            android:id="@+id/tvTanggalBooking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2023-05-22"
+            app:layout_constraintBottom_toBottomOf="@+id/textView9"
+            app:layout_constraintStart_toEndOf="@+id/textView9"
+            app:layout_constraintTop_toTopOf="@+id/textView9" />
+
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Member: "
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/textView9"
+            app:layout_constraintTop_toBottomOf="@+id/textView25" />
+
+        <TextView
+            android:id="@+id/tvMember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Daniel Ricky Alexander"
+            app:layout_constraintBottom_toBottomOf="@+id/textView14"
+            app:layout_constraintStart_toEndOf="@+id/textView14"
+            app:layout_constraintTop_toTopOf="@+id/textView14" />
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pembayaran: "
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/textView14"
+            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+        <TextView
+            android:id="@+id/tvPembayaran"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deposit Kelas"
+            app:layout_constraintBottom_toBottomOf="@+id/textView23"
+            app:layout_constraintStart_toEndOf="@+id/textView23"
+            app:layout_constraintTop_toTopOf="@+id/textView23" />
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="Waktu Presensi: "
+            app:layout_constraintStart_toStartOf="@+id/textView23"
+            app:layout_constraintTop_toBottomOf="@+id/textView23" />
+
+        <TextView
+            android:id="@+id/tvWaktuPresensi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="@+id/textView24"
+            app:layout_constraintStart_toEndOf="@+id/textView24"
+            app:layout_constraintTop_toBottomOf="@+id/textView23" />
+
+        <Button
+            android:id="@+id/btnBatal"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="Tidak Hadir"
+            android:textColor="#FF0000"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            app:layout_constraintEnd_toStartOf="@+id/btnHadir"
+            app:layout_constraintTop_toTopOf="@+id/btnHadir"
+            app:strokeColor="#FF0000" />
+
+        <Button
+            android:id="@+id/btnHadir"
+            style="@style/Widget.Material3.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTint="#FF0000"
+            android:text="Hadir"
+            android:textColor="@color/white"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView26"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Status: "
+            app:layout_constraintStart_toStartOf="@+id/textView24"
+            app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="@+id/textView26"
+            app:layout_constraintStart_toEndOf="@+id/textView26"
+            app:layout_constraintTop_toTopOf="@+id/textView26" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

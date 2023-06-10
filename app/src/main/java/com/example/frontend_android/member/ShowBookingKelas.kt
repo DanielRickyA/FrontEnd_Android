@@ -44,6 +44,9 @@ class ShowBookingKelas : Fragment() {
         token = pref?.getString("token", "").toString()
         sp = requireActivity().getSharedPreferences("tanggalId", Context.MODE_PRIVATE)
         getJadwalHarian()
+        binding.btnHistory.setOnClickListener {
+            (activity as HomeMemberActivity).changeFragment(ShowDataBookingMember())
+        }
 
     }
 

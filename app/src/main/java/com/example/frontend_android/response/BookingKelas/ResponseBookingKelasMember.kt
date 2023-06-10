@@ -28,4 +28,7 @@ data class DataBookingKelasMember(
 	@field:SerializedName("id")
 	val id: String,
 
+	@field:SerializedName("status")
+	val status: String?
+
 )

@@ -1,4 +1,4 @@
-package com.example.frontend_android.profil.profilMember
+package com.example.frontend_android.member
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -12,31 +12,35 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.frontend_android.HomeMemberActivity
 import com.example.frontend_android.R
 import com.example.frontend_android.api.ApiConfig
-import com.example.frontend_android.databinding.FragmentCekHistoryGymBinding
-import com.example.frontend_android.member.BookingGymFragment
-import com.example.frontend_android.member.showBookingGymAdapter
+import com.example.frontend_android.databinding.FragmentShowDataBookingMemberBinding
+import com.example.frontend_android.profil.profilMember.CekHistoryKelasAdapter
+import com.example.frontend_android.profil.profilMember.ProfilMember
+import com.example.frontend_android.response.BookingKelas.ResponseBatalKelas
 import com.example.frontend_android.response.bookingGym.DataItem
 import com.example.frontend_android.response.bookingGym.ResponseBookingGym
-import com.example.frontend_android.response.bookingGym.ResponseShowBookingGym
+import com.example.frontend_android.response.profilMember.DataHistoryKelas
+import com.example.frontend_android.response.profilMember.ResponseHistoryKelas
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CekHistoryGym : Fragment() {
-    private var _binding: FragmentCekHistoryGymBinding? = null
+
+class ShowDataBookingMember : Fragment() {
+    private var _binding: FragmentShowDataBookingMemberBinding? = null
     private val binding get() = _binding!!
     var pref: SharedPreferences? = null
     var sp: SharedPreferences? = null
     var token: String? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding= FragmentCekHistoryGymBinding.inflate(inflater, container, false)
+        _binding = FragmentShowDataBookingMemberBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -44,66 +48,66 @@ class CekHistoryGym : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         pref = activity?.getSharedPreferences("prefId", Context.MODE_PRIVATE)
         token = pref?.getString("token", "").toString()
-        getBookingGymMember()
+        val id = pref?.getString("id", " ").toString()
+        getHistoryKelas(id)
 
         binding.btnBack.setOnClickListener {
-            (activity as HomeMemberActivity).changeFragment(ProfilMemberNew())
+            (activity as HomeMemberActivity).changeFragment(ProfilMember())
         }
-
     }
 
-    fun getBookingGymMember(){
+    fun getHistoryKelas(id: String){
         val client = ApiConfig.getApiService()
-        client.getBookingGymMember("Bearer $token").enqueue(object :
-            Callback<ResponseShowBookingGym> {
+        client.getDataBookingKelasMember(
+            "Bearer $token",
+            id
+        ).enqueue(object : Callback<ResponseHistoryKelas> {
             override fun onResponse(
-                call: Call<ResponseShowBookingGym>,
-                response: Response<ResponseShowBookingGym>
+                call: Call<ResponseHistoryKelas>,
+                response: Response<ResponseHistoryKelas>
             ) {
                 if(response.isSuccessful){
                     val responseBody = response.body()
                     if(responseBody != null){
-                        Toast.makeText(activity, "Berhasil Mendapatkan Data", Toast.LENGTH_SHORT).show()
-                        loadRecycleView(responseBody.data as ArrayList<DataItem>)
+                        Toast.makeText(context, responseBody.message, Toast.LENGTH_SHORT).show()
+                        loadRecycleView(responseBody.data as ArrayList<DataHistoryKelas>)
                     }
                 }else{
                     val errorBody = JSONObject(response.errorBody()?.string())
                     Toast.makeText(context, errorBody.getString("message"), Toast.LENGTH_SHORT).show()
-
                 }
             }
 
-            override fun onFailure(call: Call<ResponseShowBookingGym>, t: Throwable) {
-                Toast.makeText(activity, "Error Get Data", Toast.LENGTH_SHORT).show()
-                t.printStackTrace()
+            override fun onFailure(call: Call<ResponseHistoryKelas>, t: Throwable) {
+                TODO("Not yet implemented")
             }
 
         })
     }
 
-    fun loadRecycleView(item: ArrayList<DataItem>){
-        val adapter = showBookingGymAdapter(item, object : showBookingGymAdapter.ClickInterface{
-            override fun onClickItem(data: DataItem) {
+    fun loadRecycleView(item: ArrayList<DataHistoryKelas>) {
+        val adapter = ShowDataBookingMemberAdapter(item, object :ShowDataBookingMemberAdapter.ClickInterface{
+            override fun onClickItem(data: DataHistoryKelas) {
                 Toast.makeText(activity, "Berhasil Menerima Data", Toast.LENGTH_SHORT).show()
                 val materialAlertDialogBuilder = MaterialAlertDialogBuilder(requireContext())
                 materialAlertDialogBuilder.setTitle("Konfirmasi")
-                    .setMessage("Apakah anda yakin ingin menghapus mahasiswa ini?")
+                    .setMessage("Apakah Membatalkan Kelas ini?")
                     .setNegativeButton("Batal", null)
                     .setPositiveButton("Hapus"){_,_ ->
                         val client = ApiConfig.getApiService()
-                        client.deleteBookingGym(
+                        client.batalKelas(
                             "Bearer $token",
                             data.id
-                        ).enqueue(object : Callback<ResponseBookingGym> {
+                        ).enqueue(object : Callback<ResponseBatalKelas>{
                             override fun onResponse(
-                                call: Call<ResponseBookingGym>,
-                                response: Response<ResponseBookingGym>
+                                call: Call<ResponseBatalKelas>,
+                                response: Response<ResponseBatalKelas>
                             ) {
                                 if(response.isSuccessful){
                                     val responseBody = response.body()
                                     if(responseBody != null){
                                         Toast.makeText(activity, "Berhasil Menghapus Data", Toast.LENGTH_SHORT).show()
-                                        getBookingGymMember()
+                                        getHistoryKelas(data.idMember)
                                     }
                                 }else{
                                     val errorBody = JSONObject(response.errorBody()?.string())
@@ -111,9 +115,8 @@ class CekHistoryGym : Fragment() {
                                 }
                             }
 
-                            override fun onFailure(call: Call<ResponseBookingGym>, t: Throwable) {
-                                Toast.makeText(activity, "Error Hapus", Toast.LENGTH_SHORT).show()
-                                t.printStackTrace()
+                            override fun onFailure(call: Call<ResponseBatalKelas>, t: Throwable) {
+                                TODO("Not yet implemented")
                             }
 
                         })
@@ -121,9 +124,9 @@ class CekHistoryGym : Fragment() {
                     .show()
             }
         })
-        binding.rvBookingGym.adapter = adapter
-        binding.rvBookingGym.layoutManager = LinearLayoutManager(activity)
-
+        binding.rvBookingKelas.adapter = adapter
+        binding.rvBookingKelas.layoutManager = LinearLayoutManager(activity)
     }
+
 
 }

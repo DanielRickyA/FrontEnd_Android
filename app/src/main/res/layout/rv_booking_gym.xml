@@ -23,7 +23,7 @@
             android:id="@+id/tvTanggalKapanBooking"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:text="Tanggal Gym"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -35,8 +35,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Tanggal Booking:"
-            android:textSize="10sp"
+            android:text="Tanggal Booking: "
+
             app:layout_constraintStart_toStartOf="@+id/tvTanggalKapanBooking"
             app:layout_constraintTop_toBottomOf="@+id/tvTanggalKapanBooking" />
 
@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
-            android:textSize="10sp"
+
             app:layout_constraintBottom_toBottomOf="@+id/textSidaDepo"
             app:layout_constraintStart_toEndOf="@+id/textSidaDepo"
             app:layout_constraintTop_toTopOf="@+id/textSidaDepo" />
@@ -54,22 +54,18 @@
             android:id="@+id/tvSlotWaktu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="114dp"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.098"
-            app:layout_constraintStart_toEndOf="@+id/tvTanggalKapanBooking"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/textSidaDepo"
+            app:layout_constraintTop_toBottomOf="@+id/textSidaDepo" />
 
         <TextView
             android:id="@+id/tvTextJamPresensi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Jam Presensi:"
-            android:textSize="10sp"
+            android:text="Jam Presensi: "
+
             app:layout_constraintStart_toStartOf="@+id/tvSlotWaktu"
             app:layout_constraintTop_toBottomOf="@+id/tvSlotWaktu" />
 
@@ -78,7 +74,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Text View"
-            android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="@+id/tvTextJamPresensi"
             app:layout_constraintStart_toEndOf="@+id/tvTextJamPresensi"
             app:layout_constraintTop_toBottomOf="@+id/tvSlotWaktu"
@@ -86,16 +81,18 @@
 
         <Button
             android:id="@+id/btnBatal"
-            android:layout_width="35dp"
-            android:layout_height="40dp"
+            style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:drawableLeft="@drawable/ic_delete_24"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:padding="6dp"
-            android:layout_marginTop="-8dp"
-            app:cornerRadius="9999dp"
             android:drawableTint="#FF0000"
+
+            android:text="Batal"
+            android:textColor="#FF0000"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/tvTextJamPresensi"
+            app:strokeColor="#FF0000" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

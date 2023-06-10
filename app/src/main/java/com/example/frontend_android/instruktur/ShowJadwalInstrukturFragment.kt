@@ -24,7 +24,6 @@ import retrofit2.Response
 class ShowJadwalInstrukturFragment : Fragment() {
     private var _binding: FragmentShowJadwalInstrukturBinding? = null
     private val binding get() = _binding!!
-    private val dataItem: ArrayList<DataItem> = ArrayList()
     var pref: SharedPreferences? = null
     var sp: SharedPreferences? = null
     var token: String? = null
