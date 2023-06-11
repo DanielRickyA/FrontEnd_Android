@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="2dp"
-
+    android:layout_marginHorizontal="10dp"
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp"
     app:cardUseCompatPadding="true"
@@ -35,12 +35,14 @@
             android:text="TextView"
             app:layout_constraintBottom_toBottomOf="@+id/textView22"
             app:layout_constraintStart_toEndOf="@+id/textView22"
-            app:layout_constraintTop_toTopOf="@+id/textView22" />
+            app:layout_constraintTop_toTopOf="@+id/textView22"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/tvtextMin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:text="Min Pembelian : "
             app:layout_constraintStart_toStartOf="@+id/textView22"
             app:layout_constraintTop_toBottomOf="@+id/textView22" />
@@ -49,6 +51,7 @@
             android:id="@+id/tvTextBonus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:text="Bonus : "
             app:layout_constraintStart_toStartOf="@+id/tvtextMin"
             app:layout_constraintTop_toBottomOf="@+id/tvtextMin" />
@@ -73,6 +76,7 @@
             android:id="@+id/textView22"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:text="Jenis Promo: "
             app:layout_constraintStart_toStartOf="@+id/tvNamaPromo"
             app:layout_constraintTop_toBottomOf="@+id/tvNamaPromo" />

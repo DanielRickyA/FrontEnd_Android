@@ -52,7 +52,7 @@ class ShowDataBookingMember : Fragment() {
         getHistoryKelas(id)
 
         binding.btnBack.setOnClickListener {
-            (activity as HomeMemberActivity).changeFragment(ProfilMember())
+            (activity as HomeMemberActivity).changeFragment(ShowBookingKelas())
         }
     }
 

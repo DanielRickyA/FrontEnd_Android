@@ -101,6 +101,7 @@ class BookingKelasMemberFragment : Fragment() {
                         val responseBody = response.body()
                         if(responseBody != null){
                             Toast.makeText(context, "Berhasil Booking Kelas", Toast.LENGTH_SHORT).show()
+                            (activity as HomeMemberActivity).changeFragment(ShowDataBookingMember())
                         }
                 } else{
                     val errorBody = JSONObject(response.errorBody()?.string())

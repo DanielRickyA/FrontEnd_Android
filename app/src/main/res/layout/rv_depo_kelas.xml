@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="2dp"
-    android:layout_marginEnd="20dp"
-    android:layout_marginStart="20dp"
+    android:layout_marginHorizontal="25dp"
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp"
     app:cardUseCompatPadding="true"
@@ -17,11 +16,11 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         >
+
         <TextView
             android:id="@+id/tvNamaKelas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:text="Nama Kelas"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -32,9 +31,9 @@
             android:id="@+id/textSidaDepo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Sisa Deposit :"
-            android:textSize="12sp"
+            android:text="Sisa Deposit: "
+            android:textStyle="bold"
+
             app:layout_constraintStart_toStartOf="@+id/tvNamaKelas"
             app:layout_constraintTop_toBottomOf="@+id/tvNamaKelas" />
 
@@ -43,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
-            android:textSize="12sp"
+
             app:layout_constraintBottom_toBottomOf="@+id/textSidaDepo"
             app:layout_constraintStart_toEndOf="@+id/textSidaDepo"
             app:layout_constraintTop_toTopOf="@+id/textSidaDepo" />
@@ -52,24 +51,20 @@
             android:id="@+id/textMasaBerlaku"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="114dp"
-            android:text="Masa Berlaku :"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.098"
-            app:layout_constraintStart_toEndOf="@+id/tvNamaKelas"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:text="Masa Berlaku: "
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/textSidaDepo"
+            app:layout_constraintTop_toBottomOf="@+id/textSidaDepo" />
 
         <TextView
             android:id="@+id/tvMasaBerlaku"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="2023-06-07
-"
-            app:layout_constraintStart_toStartOf="@+id/textMasaBerlaku"
-            app:layout_constraintTop_toBottomOf="@+id/textMasaBerlaku" />
+            android:text="2023-06-07"
+
+            app:layout_constraintBottom_toBottomOf="@+id/textMasaBerlaku"
+            app:layout_constraintStart_toEndOf="@+id/textMasaBerlaku"
+            app:layout_constraintTop_toTopOf="@+id/textMasaBerlaku" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

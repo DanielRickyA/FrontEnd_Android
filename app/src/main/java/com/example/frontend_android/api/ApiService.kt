@@ -5,6 +5,7 @@ import com.example.frontend_android.response.BookingKelas.ResponseBookingKelas
 import com.example.frontend_android.response.BookingKelas.ResponseBookingKelasMember
 import com.example.frontend_android.response.BookingKelas.ResponsePresensiMember
 import com.example.frontend_android.response.IjinInstruktur.ReponseHistoryPerizinan
+import com.example.frontend_android.response.IjinInstruktur.ResponseDataInstruktur
 import com.example.frontend_android.response.IjinInstruktur.ResponseJadwalInstruktur
 import com.example.frontend_android.response.IjinInstruktur.ResponseRequestPerizinan
 import com.example.frontend_android.response.ResponseLoginInstruktur
@@ -80,6 +81,7 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Field("id_jadwal") id_jadwal: Int,
         @Field("keterangan") keterangan: String,
+        @Field("instruktur_pengganti") id_instruktur_pengganti: Int,
     ): Call<ResponseRequestPerizinan>
 
     @GET("showIjinInsturktur")
@@ -230,6 +232,11 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Path("id") id: String,
     ): Call<ResponsePresensiMember>
+
+    @GET("getInstrukturData")
+    fun getInstrukturData(
+        @Header("Authorization") token: String,
+    ): Call<ResponseDataInstruktur>
 
 
 

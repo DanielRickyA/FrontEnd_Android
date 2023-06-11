@@ -22,6 +22,9 @@ data class Data(
 	@field:SerializedName("tanggal_izin")
 	val tanggalIzin: String,
 
+	@field:SerializedName("instruktur_pengganti")
+	val instrukturPengganti: Int,
+
 	@field:SerializedName("keterangan")
 	val keterangan: String,
 

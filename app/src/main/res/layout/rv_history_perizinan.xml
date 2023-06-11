@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="2dp"
-
+    android:layout_marginHorizontal="15dp"
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp"
     app:cardUseCompatPadding="true"
@@ -32,62 +32,62 @@
             android:id="@+id/Keterangan"
             android:layout_width="145dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:text="TextView"
-            app:layout_constraintStart_toStartOf="@+id/tvNamaInstruktur"
-            app:layout_constraintTop_toBottomOf="@+id/tvNamaInstruktur" />
+            app:layout_constraintStart_toStartOf="@+id/textView8"
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
         <TextView
             android:id="@+id/tanggal_izin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2023-05-17"
-            app:layout_constraintStart_toStartOf="@+id/textView4"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            app:layout_constraintBottom_toBottomOf="@+id/textView4"
+            app:layout_constraintStart_toEndOf="@+id/textView4"
+            app:layout_constraintTop_toTopOf="@+id/textView4" />
 
         <TextView
             android:id="@+id/tanggal_buat_izin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2023-05-16"
-            app:layout_constraintStart_toStartOf="@+id/textView7"
-            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+            app:layout_constraintBottom_toBottomOf="@+id/textView7"
+            app:layout_constraintStart_toEndOf="@+id/textView7"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="148dp"
-            android:text="TGL Izin"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textStyle="bold"
+            android:text="Tanggal Izin: "
+            app:layout_constraintStart_toStartOf="@+id/tvNamaInstruktur"
+            app:layout_constraintTop_toBottomOf="@+id/tvNamaInstruktur" />
 
         <TextView
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TGL Buat Izin"
-            app:layout_constraintStart_toStartOf="@+id/tanggal_izin"
-            app:layout_constraintTop_toBottomOf="@+id/tanggal_izin" />
+            android:textStyle="bold"
+            android:text="Tanggal Buat Izin: "
+            app:layout_constraintStart_toStartOf="@+id/textView4"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <TextView
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="4dp"
-            android:text="Tgl Konfirmasi"
-            app:layout_constraintStart_toEndOf="@+id/textView4"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textStyle="bold"
+            android:text="Tanggal Konfirmasi: "
+            app:layout_constraintStart_toStartOf="@+id/textView7"
+            app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
         <TextView
             android:id="@+id/tvTanggalKonfirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2023-05-17"
-            app:layout_constraintStart_toStartOf="@+id/textView8"
-            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+            app:layout_constraintStart_toEndOf="@+id/textView8"
+            app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

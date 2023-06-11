@@ -19,6 +19,7 @@ class JadwalKelasInstrukturAdapter(
                 tvTanggalKelas.text = data.tanggalJadwalHarian
                 tvJamKelas.text = data.fJadwalUmum.jamKelas
                 tvHari.text = data.fJadwalUmum.hariKelas
+                tvNamaKelas.text = data.fJadwalUmum.fKelas.nama
             }
         }
     }

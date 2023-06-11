@@ -13,8 +13,8 @@
     <item
         android:id="@+id/presensi"
         android:enabled="true"
-        android:icon="@drawable/ic_email_24"
-        android:title="Perizinan"/>
+        android:icon="@drawable/ic_presensi_member"
+        android:title="Presensi"/>
     <item
         android:id="@+id/profile"
         android:enabled="true"

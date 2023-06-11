@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.frontend_android.HomeInstrukturActivity
 import com.example.frontend_android.R
 import com.example.frontend_android.api.ApiConfig
@@ -65,6 +66,7 @@ class ProfilInstruktur : Fragment() {
     }
 
     fun getInstruktur(id: Int){
+        binding.loading.layoutLoading.visibility = android.view.View.VISIBLE
         val client = ApiConfig.getApiService()
         client.getInstruktur(
             "Bearer $token",
@@ -75,6 +77,7 @@ class ProfilInstruktur : Fragment() {
                 response: Response<ResponseProfilInstruktur>
             ) {
                 if(response.isSuccessful){
+                    binding.loading.layoutLoading.visibility = android.view.View.GONE
                     val responseBody = response.body()
                     if(responseBody != null){
                         binding.tvNama.text = responseBody.data.nama
@@ -88,7 +91,8 @@ class ProfilInstruktur : Fragment() {
             }
 
             override fun onFailure(call: Call<ResponseProfilInstruktur>, t: Throwable) {
-                TODO("Not yet implemented")
+                binding.loading.layoutLoading.visibility = android.view.View.GONE
+                Toast.makeText(activity, "Error", Toast.LENGTH_SHORT).show()
             }
 
         })

@@ -50,6 +50,16 @@
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <Spinner
+        android:id="@+id/listIns"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tanggalJadwal" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/keterangan"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -62,14 +72,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tanggalJadwal">
+        app:layout_constraintTop_toBottomOf="@+id/listIns">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
             android:gravity="top|start"
-            android:lines="5"  />
+            android:inputType="textMultiLine"
+            android:lines="5" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView

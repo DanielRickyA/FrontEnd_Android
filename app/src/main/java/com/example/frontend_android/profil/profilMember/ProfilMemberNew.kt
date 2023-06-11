@@ -71,6 +71,7 @@ class ProfilMemberNew : Fragment() {
     }
 
     fun getMember(id_member: String){
+        binding.loading.layoutLoading.visibility = android.view.View.VISIBLE
         val client = ApiConfig.getApiService()
         client.getMember(
             "Bearer $token",
@@ -83,6 +84,7 @@ class ProfilMemberNew : Fragment() {
                 if(response.isSuccessful){
                     val responseBody  = response.body()
                     if(responseBody != null){
+                        binding.loading.layoutLoading.visibility = android.view.View.GONE
                         Toast.makeText(context, "Berhasil Mendapatkan Data", Toast.LENGTH_SHORT).show()
                         binding.tvNama.text = responseBody.data.nama
                         binding.tvIdMember.text = responseBody.data.id
@@ -95,6 +97,7 @@ class ProfilMemberNew : Fragment() {
 
                     }
                 }else{
+                    binding.loading.layoutLoading.visibility = android.view.View.GONE
                     val errorBody = JSONObject(response.errorBody()?.string())
                     Toast.makeText(context, errorBody.getString("message"), Toast.LENGTH_SHORT).show()
                 }
@@ -102,6 +105,7 @@ class ProfilMemberNew : Fragment() {
 
             override fun onFailure(call: Call<ResponseProfilMember>, t: Throwable) {
                 Toast.makeText(context, "Gagal Mendapatkan Data", Toast.LENGTH_SHORT).show()
+                binding.loading.layoutLoading.visibility = android.view.View.GONE
             }
 
         })
