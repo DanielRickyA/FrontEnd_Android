@@ -1,23 +1,17 @@
-package com.example.frontend_android.response.login
+package com.example.frontend_android.response.profilMO
 
 import com.google.gson.annotations.SerializedName
 
-data class ResponseLoginPegawai(
+data class ResponseProfilMO(
 
-	@field:SerializedName("access_token")
-	val accessToken: String,
+	@field:SerializedName("data")
+	val data: Data,
 
 	@field:SerializedName("message")
-	val message: String,
-
-	@field:SerializedName("token_type")
-	val tokenType: String,
-
-	@field:SerializedName("user")
-	val user: UserMO
+	val message: String
 )
 
-data class UserMO(
+data class Data(
 
 	@field:SerializedName("role")
 	val role: String,

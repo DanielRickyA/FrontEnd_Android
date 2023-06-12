@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import com.example.frontend_android.mo.ShowJadwalToday
 import com.example.frontend_android.mo.ShowPresensi
 import com.example.frontend_android.mo.ShowPresensiAdapter
+import com.example.frontend_android.profil.profilMO.ProfilMO
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomePegawaiActivity : AppCompatActivity() {
@@ -38,10 +39,10 @@ class HomePegawaiActivity : AppCompatActivity() {
                 changeFragment(ShowPresensi())
                 true
             }
-//            R.id.profile->{
-//                changeFragment(ProfileFragment())
-//                true
-//            }
+            R.id.profile->{
+                changeFragment(ProfilMO())
+                true
+            }
             else->false
         }
         }

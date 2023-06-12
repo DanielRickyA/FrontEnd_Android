@@ -20,6 +20,7 @@ import com.example.frontend_android.response.presensiKelas.ResponseDataKelasMemb
 import com.example.frontend_android.response.presensiKelas.ResponseKelasToday
 import com.example.frontend_android.response.profilInstruktur.ResponseHistoryKelasInstruktur
 import com.example.frontend_android.response.profilInstruktur.ResponseProfilInstruktur
+import com.example.frontend_android.response.profilMO.ResponseProfilMO
 import com.example.frontend_android.response.profilMember.ResponseCekDepoMember
 import com.example.frontend_android.response.profilMember.ResponseHistoryKelas
 import com.example.frontend_android.response.profilMember.ResponseProfilMember
@@ -255,6 +256,11 @@ interface ApiService {
         @Header("Authorization") token: String,
     ): Call<ResponseLogout>
 
+    @GET("MO/{id}")
+    fun getMO(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int,
+    ): Call<ResponseProfilMO>
 
 
 }

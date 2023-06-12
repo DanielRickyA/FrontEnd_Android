@@ -71,6 +71,7 @@ class TimeTablesFragment : Fragment() {
 
     fun getPromo(){
         val client = ApiConfig.getApiService()
+
         binding.loading.layoutLoading.visibility = android.view.View.VISIBLE
         client.getPromo().enqueue(object : Callback<ResponsePromo>{
             override fun onResponse(call: Call<ResponsePromo>, response: Response<ResponsePromo>) {

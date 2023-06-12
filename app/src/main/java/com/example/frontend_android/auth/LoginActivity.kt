@@ -173,7 +173,7 @@ class LoginActivity : AppCompatActivity() {
                 if(responseBody != null){
                     Toast.makeText(this@LoginActivity, "Login Berhasil" , Toast.LENGTH_SHORT).show()
                     pref!!.edit().putString("token", responseBody.accessToken).apply()
-//                    pref!!.edit().putString("id", responseBody.user.id).apply()
+                    pref!!.edit().putInt("id", responseBody.user.id).apply()
                     val intent = Intent(this@LoginActivity, HomePegawaiActivity::class.java)
                     startActivity(intent)
                 }else {
