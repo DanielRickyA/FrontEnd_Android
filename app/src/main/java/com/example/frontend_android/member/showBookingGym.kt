@@ -54,6 +54,7 @@ class showBookingGym : Fragment() {
     }
 
     fun getBookingGymMember(){
+        binding.loading.layoutLoading.visibility = android.view.View.VISIBLE
         val client = ApiConfig.getApiService()
         client.getBookingGymMember("Bearer $token").enqueue(object : Callback<ResponseShowBookingGym>{
             override fun onResponse(
@@ -63,17 +64,20 @@ class showBookingGym : Fragment() {
                 if(response.isSuccessful){
                     val responseBody = response.body()
                     if(responseBody != null){
+                        binding.loading.layoutLoading.visibility = android.view.View.GONE
                         Toast.makeText(activity, "Berhasil Mendapatkan Data", Toast.LENGTH_SHORT).show()
                         loadRecycleView(responseBody.data as ArrayList<DataItem>)
                     }
                 }else{
                     val errorBody = JSONObject(response.errorBody()?.string())
                     Toast.makeText(context, errorBody.getString("message"), Toast.LENGTH_SHORT).show()
+                    binding.loading.layoutLoading.visibility = android.view.View.GONE
 
                 }
             }
 
             override fun onFailure(call: Call<ResponseShowBookingGym>, t: Throwable) {
+                binding.loading.layoutLoading.visibility = android.view.View.GONE
                 Toast.makeText(activity, "Error Get Data", Toast.LENGTH_SHORT).show()
                 t.printStackTrace()
             }
@@ -90,6 +94,7 @@ class showBookingGym : Fragment() {
                     .setMessage("Apakah anda yakin ingin menghapus mahasiswa ini?")
                     .setNegativeButton("Batal", null)
                     .setPositiveButton("Hapus"){_,_ ->
+                        binding.loading.layoutLoading.visibility = android.view.View.VISIBLE
                         val client = ApiConfig.getApiService()
                         client.deleteBookingGym(
                             "Bearer $token",
@@ -104,14 +109,17 @@ class showBookingGym : Fragment() {
                                     if(responseBody != null){
                                         Toast.makeText(activity, "Berhasil Menghapus Data", Toast.LENGTH_SHORT).show()
                                         getBookingGymMember()
+                                        binding.loading.layoutLoading.visibility = android.view.View.GONE
                                     }
                                 }else{
                                     val errorBody = JSONObject(response.errorBody()?.string())
                                     Toast.makeText(context, errorBody.getString("message"), Toast.LENGTH_SHORT).show()
+                                    binding.loading.layoutLoading.visibility = android.view.View.GONE
                                 }
                             }
 
                             override fun onFailure(call: Call<ResponseBookingGym>, t: Throwable) {
+                                binding.loading.layoutLoading.visibility = android.view.View.GONE
                                 Toast.makeText(activity, "Error Hapus", Toast.LENGTH_SHORT).show()
                                 t.printStackTrace()
                             }

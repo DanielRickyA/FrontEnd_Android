@@ -67,6 +67,7 @@ class BookingGymFragment : Fragment() {
     }
 
     fun bookingGym(tanggal_yang_dibooking: String, slot_waktu: String){
+        binding.loading.layoutLoading.visibility = android.view.View.VISIBLE
         val client = ApiConfig.getApiService()
         client.bookingGym(
             "Bearer $token",
@@ -80,17 +81,20 @@ class BookingGymFragment : Fragment() {
                 if(response.isSuccessful){
                     val responseBody = response.body()
                     if(responseBody != null){
+                        binding.loading.layoutLoading.visibility = android.view.View.GONE
                         Toast.makeText(requireContext(), "Berhasil Booking", Toast.LENGTH_SHORT).show()
                         (activity as HomeMemberActivity).changeFragment(showBookingGym())
                     }
                 }else{
+                    binding.loading.layoutLoading.visibility = android.view.View.GONE
                     val errorBody = JSONObject(response.errorBody()?.string())
                     Toast.makeText(context, errorBody.getString("message"), Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<ResponseBookingGym>, t: Throwable) {
-                TODO("Not yet implemented")
+                Toast.makeText(context, "error", Toast.LENGTH_SHORT).show()
+                binding.loading.layoutLoading.visibility = android.view.View.GONE
             }
 
         })

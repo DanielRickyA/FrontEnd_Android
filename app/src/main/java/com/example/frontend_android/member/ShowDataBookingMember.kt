@@ -57,6 +57,7 @@ class ShowDataBookingMember : Fragment() {
     }
 
     fun getHistoryKelas(id: String){
+        binding.loading.layoutLoading.visibility = android.view.View.VISIBLE
         val client = ApiConfig.getApiService()
         client.getDataBookingKelasMember(
             "Bearer $token",
@@ -69,17 +70,20 @@ class ShowDataBookingMember : Fragment() {
                 if(response.isSuccessful){
                     val responseBody = response.body()
                     if(responseBody != null){
+                        binding.loading.layoutLoading.visibility = android.view.View.GONE
                         Toast.makeText(context, responseBody.message, Toast.LENGTH_SHORT).show()
                         loadRecycleView(responseBody.data as ArrayList<DataHistoryKelas>)
                     }
                 }else{
                     val errorBody = JSONObject(response.errorBody()?.string())
+                    binding.loading.layoutLoading.visibility = android.view.View.GONE
                     Toast.makeText(context, errorBody.getString("message"), Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<ResponseHistoryKelas>, t: Throwable) {
-                TODO("Not yet implemented")
+                Toast.makeText(context, "error", Toast.LENGTH_SHORT).show()
+                binding.loading.layoutLoading.visibility = android.view.View.GONE
             }
 
         })
@@ -94,6 +98,7 @@ class ShowDataBookingMember : Fragment() {
                     .setMessage("Apakah Membatalkan Kelas ini?")
                     .setNegativeButton("Batal", null)
                     .setPositiveButton("Hapus"){_,_ ->
+                        binding.loading.layoutLoading.visibility = android.view.View.VISIBLE
                         val client = ApiConfig.getApiService()
                         client.batalKelas(
                             "Bearer $token",
@@ -106,17 +111,20 @@ class ShowDataBookingMember : Fragment() {
                                 if(response.isSuccessful){
                                     val responseBody = response.body()
                                     if(responseBody != null){
+                                        binding.loading.layoutLoading.visibility = android.view.View.GONE
                                         Toast.makeText(activity, "Berhasil Menghapus Data", Toast.LENGTH_SHORT).show()
                                         getHistoryKelas(data.idMember)
                                     }
                                 }else{
                                     val errorBody = JSONObject(response.errorBody()?.string())
                                     Toast.makeText(context, errorBody.getString("message"), Toast.LENGTH_SHORT).show()
+                                    binding.loading.layoutLoading.visibility = android.view.View.GONE
                                 }
                             }
 
                             override fun onFailure(call: Call<ResponseBatalKelas>, t: Throwable) {
-                                TODO("Not yet implemented")
+                                Toast.makeText(context, "error", Toast.LENGTH_SHORT).show()
+                                binding.loading.layoutLoading.visibility = android.view.View.GONE
                             }
 
                         })

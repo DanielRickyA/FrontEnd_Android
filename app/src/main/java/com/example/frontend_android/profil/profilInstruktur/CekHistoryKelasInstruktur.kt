@@ -52,6 +52,7 @@ class CekHistoryKelasInstruktur : Fragment() {
 
     fun getHistoryKelasInstruktur(){
         val client = ApiConfig.getApiService()
+        binding.loading.layoutLoading.visibility = android.view.View.VISIBLE
         client.getHistoryKelasInstruktur(
             "Bearer $token",
         ).enqueue(object : Callback<ResponseHistoryKelasInstruktur> {
@@ -64,15 +65,18 @@ class CekHistoryKelasInstruktur : Fragment() {
                     if(responseBody != null){
                         Toast.makeText(context, responseBody.message, Toast.LENGTH_SHORT).show()
                         loadRecycleView(responseBody.data as ArrayList<DataItem>)
+                        binding.loading.layoutLoading.visibility = android.view.View.GONE
                     }
                 }else{
                     val errorBody = JSONObject(response.errorBody()?.string())
                     Toast.makeText(context, errorBody.getString("message"), Toast.LENGTH_SHORT).show()
+                    binding.loading.layoutLoading.visibility = android.view.View.GONE
                 }
             }
 
             override fun onFailure(call: Call<ResponseHistoryKelasInstruktur>, t: Throwable) {
-                TODO("Not yet implemented")
+               Toast.makeText(context, "Gagal Koneksi ke Server", Toast.LENGTH_SHORT).show()
+                binding.loading.layoutLoading.visibility = android.view.View.GONE
             }
 
         })

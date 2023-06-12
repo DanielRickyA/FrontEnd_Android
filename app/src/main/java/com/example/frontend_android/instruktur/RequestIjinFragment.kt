@@ -79,6 +79,7 @@ class RequestIjinFragment : Fragment() {
     }
 
     fun requestIjin(id_jadwal: Int, keterangan:String, id_instruktur_pengganti: Int){
+        binding.loading.layoutLoading.visibility = android.view.View.VISIBLE
         val client = ApiConfig.getApiService()
         client.requestIzin(
             "Bearer $token",
@@ -94,16 +95,19 @@ class RequestIjinFragment : Fragment() {
                 val responseBody = response.body()
                     if (responseBody != null) {
                         Toast.makeText(context, "Berhasil Request Ijin", Toast.LENGTH_SHORT).show()
+                        binding.loading.layoutLoading.visibility = android.view.View.GONE
                         (activity as HomeInstrukturActivity).changeFragment(HistoryPerizinanFragment())
                     }else{
                         val errorBody = JSONObject(response.errorBody()?.string())
                         Toast.makeText(context, errorBody.getString("message"), Toast.LENGTH_SHORT).show()
+                        binding.loading.layoutLoading.visibility = android.view.View.GONE
                     }
 
             }
 
             override fun onFailure(call: Call<ResponseRequestPerizinan>, t: Throwable) {
                 Toast.makeText(context, "Gagal Request Ijin", Toast.LENGTH_SHORT).show()
+                binding.loading.layoutLoading.visibility = android.view.View.GONE
             }
 
         })
@@ -111,6 +115,7 @@ class RequestIjinFragment : Fragment() {
 
     fun getDataInstruktur(){
         val client = ApiConfig.getApiService()
+        binding.loading.layoutLoading.visibility = android.view.View.VISIBLE
         client.getInstrukturData(
             "Bearer $token",
         ).enqueue(object : Callback<ResponseDataInstruktur>{
@@ -121,6 +126,7 @@ class RequestIjinFragment : Fragment() {
                 if(response.isSuccessful){
                     val responseBody = response.body()
                     if(responseBody != null){
+                        binding.loading.layoutLoading.visibility = android.view.View.GONE
                         ListInstruktur.addAll(responseBody.data)
                         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, ListInstruktur)
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -130,11 +136,13 @@ class RequestIjinFragment : Fragment() {
                 }else{
                     val errorBody = JSONObject(response.errorBody()?.string())
                     Toast.makeText(context, errorBody.getString("message"), Toast.LENGTH_SHORT).show()
+                    binding.loading.layoutLoading.visibility = android.view.View.GONE
                 }
             }
 
             override fun onFailure(call: Call<ResponseDataInstruktur>, t: Throwable) {
-                TODO("Not yet implemented")
+                Toast.makeText(context, "Gagal Koneksi Server", Toast.LENGTH_SHORT).show()
+                binding.loading.layoutLoading.visibility = android.view.View.GONE
             }
 
         })

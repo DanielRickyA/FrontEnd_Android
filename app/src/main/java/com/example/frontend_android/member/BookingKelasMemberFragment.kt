@@ -84,6 +84,7 @@ class BookingKelasMemberFragment : Fragment() {
 
 
     fun bookingKelas(id_jadwal: Int, id_member: String, jenis_pembayaran: String) {
+        binding.loading.layoutLoading.visibility = android.view.View.VISIBLE
         val client = ApiConfig.getApiService()
         client.bookingKelas(
             "Bearer $token",
@@ -101,16 +102,19 @@ class BookingKelasMemberFragment : Fragment() {
                         val responseBody = response.body()
                         if(responseBody != null){
                             Toast.makeText(context, "Berhasil Booking Kelas", Toast.LENGTH_SHORT).show()
+                            binding.loading.layoutLoading.visibility = android.view.View.GONE
                             (activity as HomeMemberActivity).changeFragment(ShowDataBookingMember())
                         }
                 } else{
                     val errorBody = JSONObject(response.errorBody()?.string())
                     Toast.makeText(context, errorBody.getString("message"), Toast.LENGTH_SHORT).show()
+                    binding.loading.layoutLoading.visibility = android.view.View.GONE
                 }
             }
 
             override fun onFailure(call: Call<ResponseBookingKelasMember>, t: Throwable) {
                 Toast.makeText(context, "Gagal Booking Kelas", Toast.LENGTH_SHORT).show()
+                binding.loading.layoutLoading.visibility = android.view.View.GONE
             }
 
         })

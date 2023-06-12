@@ -51,6 +51,7 @@ class PresensiMember : Fragment() {
     }
 
     fun getDataMember(id_jadwal_harian: Int){
+        binding.loading.layoutLoading.visibility = android.view.View.VISIBLE
         val client = ApiConfig.getApiService()
         client.getDataMember(
             "Bearer $token",
@@ -65,16 +66,24 @@ class PresensiMember : Fragment() {
                     if(responseBody != null){
                         Toast.makeText(context, responseBody.message, Toast.LENGTH_SHORT).show()
                         loadRecycleView(responseBody.data as ArrayList<DataMember>)
+                        binding.loading.layoutLoading.visibility = android.view.View.GONE
                     }
                 }else{
                     Log.e("Error", response.errorBody()?.string().toString())
-                    val errorBody = JSONObject(response.errorBody()?.string().toString())
-                    Toast.makeText(context, errorBody.getString("message"), Toast.LENGTH_SHORT).show()
+                    if(response.code() == 404){
+                        Toast.makeText(context, "Data Member Kosong", Toast.LENGTH_SHORT).show()
+                        binding.loading.layoutLoading.visibility = android.view.View.GONE
+                    }else{
+                        val errorBody = JSONObject(response.errorBody()?.string())
+                        Toast.makeText(context, errorBody.getString("message"), Toast.LENGTH_SHORT).show()
+                        binding.loading.layoutLoading.visibility = android.view.View.GONE
+                    }
                 }
             }
 
             override fun onFailure(call: Call<ResponseDataKelasMember>, t: Throwable) {
                 Toast.makeText(context, t.message, Toast.LENGTH_SHORT).show()
+                binding.loading.layoutLoading.visibility = android.view.View.GONE
             }
 
         })

@@ -50,6 +50,7 @@ class HistoryPerizinanFragment : Fragment() {
 
     fun getHistoryPerizinan(){
         val client = ApiConfig.getApiService()
+        binding.loading.layoutLoading.visibility = android.view.View.VISIBLE
         client.getHistoryPerizinan("Bearer $token").enqueue(object : Callback<ReponseHistoryPerizinan>{
             override fun onResponse(
                 call: Call<ReponseHistoryPerizinan>,
@@ -60,19 +61,22 @@ class HistoryPerizinanFragment : Fragment() {
                     if(responseBody != null){
 
                         loadRecycleView(responseBody.data as ArrayList<DataItemHistory>)
+                        binding.loading.layoutLoading.visibility = android.view.View.GONE
                         println(responseBody.data)
 
 
                         Toast.makeText(activity, "Berhasil Mendapatkan Data", Toast.LENGTH_SHORT).show()
 
                     }else{
+                        binding.loading.layoutLoading.visibility = android.view.View.GONE
                         Toast.makeText(activity, "Gagal Mendapatkan Data", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
 
             override fun onFailure(call: Call<ReponseHistoryPerizinan>, t: Throwable) {
-                TODO("Not yet implemented")
+                Toast.makeText(activity, "Gagal Koneksi ke Server", Toast.LENGTH_SHORT).show()
+                binding.loading.layoutLoading.visibility = android.view.View.GONE
             }
 
         })

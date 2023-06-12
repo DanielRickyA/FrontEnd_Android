@@ -50,6 +50,7 @@ class JadwalKelasInsturktur : Fragment() {
     }
 
     fun getJadwalInstruktur(){
+        binding.loading.layoutLoading.visibility = android.view.View.VISIBLE
         val client = ApiConfig.getApiService()
         client.GetKelasInstrukturToday(
             "Bearer $token"
@@ -61,6 +62,7 @@ class JadwalKelasInsturktur : Fragment() {
                 if(response.isSuccessful){
                     val responseBody = response.body()
                     if(responseBody != null){
+                        binding.loading.layoutLoading.visibility = android.view.View.GONE
                         loadRecycleView(responseBody.data as ArrayList<DataItem>)
                     }
                 }else{
@@ -70,6 +72,7 @@ class JadwalKelasInsturktur : Fragment() {
             }
 
             override fun onFailure(call: Call<ResponseKelasToday>, t: Throwable) {
+                binding.loading.layoutLoading.visibility = android.view.View.GONE
                 Toast.makeText(context, t.message, Toast.LENGTH_SHORT).show()
             }
 

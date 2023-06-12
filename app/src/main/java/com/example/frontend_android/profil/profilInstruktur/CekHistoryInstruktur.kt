@@ -17,6 +17,7 @@ import com.example.frontend_android.instruktur.HistoryPerizinanAdapter
 import com.example.frontend_android.instruktur.ShowJadwalInstrukturFragment
 import com.example.frontend_android.response.IjinInstruktur.DataItemHistory
 import com.example.frontend_android.response.IjinInstruktur.ReponseHistoryPerizinan
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -51,6 +52,7 @@ class CekHistoryInstruktur : Fragment() {
 
     fun getHistoryPerizinan(){
         val client = ApiConfig.getApiService()
+        binding.loading.layoutLoading.visibility = android.view.View.VISIBLE
         client.getHistoryPerizinan("Bearer $token").enqueue(object :
             Callback<ReponseHistoryPerizinan> {
             override fun onResponse(
@@ -60,21 +62,22 @@ class CekHistoryInstruktur : Fragment() {
                 if(response.isSuccessful){
                     val responseBody = response.body()
                     if(responseBody != null){
-
                         loadRecycleView(responseBody.data as ArrayList<DataItemHistory>)
                         println(responseBody.data)
-
-
                         Toast.makeText(activity, "Berhasil Mendapatkan Data", Toast.LENGTH_SHORT).show()
+                        binding.loading.layoutLoading.visibility = android.view.View.GONE
 
                     }else{
-                        Toast.makeText(activity, "Gagal Mendapatkan Data", Toast.LENGTH_SHORT).show()
+                        val errorBody = JSONObject(response.errorBody()?.string())
+                        Toast.makeText(context, errorBody.getString("message"), Toast.LENGTH_SHORT).show()
+                        binding.loading.layoutLoading.visibility = android.view.View.GONE
                     }
                 }
             }
 
             override fun onFailure(call: Call<ReponseHistoryPerizinan>, t: Throwable) {
-                TODO("Not yet implemented")
+                Toast.makeText(context, "Gagal Koneksi ke Server", Toast.LENGTH_SHORT).show()
+                binding.loading.layoutLoading.visibility = android.view.View.GONE
             }
 
         })

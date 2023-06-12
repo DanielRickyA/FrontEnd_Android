@@ -18,6 +18,7 @@ import com.example.frontend_android.databinding.FragmentShowPresensiBinding
 import com.example.frontend_android.response.presensiInstruktur.DataItem
 import com.example.frontend_android.response.presensiInstruktur.DataItemPresensi
 import com.example.frontend_android.response.presensiInstruktur.ResponsePresensi
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -67,7 +68,8 @@ class ShowPresensi : Fragment() {
 
                     }
                 }else{
-                    Toast.makeText(activity, "Gagal", Toast.LENGTH_SHORT).show()
+                    val errorBody = JSONObject(response.errorBody()?.string())
+                    Toast.makeText(context, errorBody.getString("message"), Toast.LENGTH_SHORT).show()
                 }
             }
 

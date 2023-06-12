@@ -50,6 +50,7 @@ class CekHistoryKelas : Fragment() {
 
     fun getHistoryKelas(id: String){
         val client = ApiConfig.getApiService()
+        binding.loading.layoutLoading.visibility = android.view.View.VISIBLE
         client.getHistoryKelas(
             "Bearer $token",
             id
@@ -63,15 +64,18 @@ class CekHistoryKelas : Fragment() {
                     if(responseBody != null){
                         Toast.makeText(context, responseBody.message, Toast.LENGTH_SHORT).show()
                         loadRecycleView(responseBody.data as ArrayList<DataHistoryKelas>)
+                        binding.loading.layoutLoading.visibility = android.view.View.GONE
                     }
                 }else{
                     val errorBody = JSONObject(response.errorBody()?.string())
                     Toast.makeText(context, errorBody.getString("message"), Toast.LENGTH_SHORT).show()
+                    binding.loading.layoutLoading.visibility = android.view.View.GONE
                 }
             }
 
             override fun onFailure(call: Call<ResponseHistoryKelas>, t: Throwable) {
-                TODO("Not yet implemented")
+                Toast.makeText(context, "Gagal Koneksi ke Server", Toast.LENGTH_SHORT).show()
+                binding.loading.layoutLoading.visibility = android.view.View.GONE
             }
 
         })

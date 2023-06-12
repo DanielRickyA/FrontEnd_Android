@@ -54,6 +54,7 @@ class CekHistoryGym : Fragment() {
 
     fun getBookingGymMember(){
         val client = ApiConfig.getApiService()
+        binding.loading.layoutLoading.visibility = android.view.View.VISIBLE
         client.getBookingGymMember("Bearer $token").enqueue(object :
             Callback<ResponseShowBookingGym> {
             override fun onResponse(
@@ -65,16 +66,19 @@ class CekHistoryGym : Fragment() {
                     if(responseBody != null){
                         Toast.makeText(activity, "Berhasil Mendapatkan Data", Toast.LENGTH_SHORT).show()
                         loadRecycleView(responseBody.data as ArrayList<DataItem>)
+                        binding.loading.layoutLoading.visibility = android.view.View.GONE
                     }
                 }else{
                     val errorBody = JSONObject(response.errorBody()?.string())
                     Toast.makeText(context, errorBody.getString("message"), Toast.LENGTH_SHORT).show()
+                    binding.loading.layoutLoading.visibility = android.view.View.GONE
 
                 }
             }
 
             override fun onFailure(call: Call<ResponseShowBookingGym>, t: Throwable) {
                 Toast.makeText(activity, "Error Get Data", Toast.LENGTH_SHORT).show()
+                binding.loading.layoutLoading.visibility = android.view.View.GONE
                 t.printStackTrace()
             }
 

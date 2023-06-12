@@ -49,6 +49,7 @@ class ShowJadwalInstrukturFragment : Fragment() {
     }
 
     fun getJadwalInstruktur(){
+        binding.loading.layoutLoading.visibility = android.view.View.VISIBLE
         val client = ApiConfig.getApiService()
         client.getInstrukturHarian("Bearer $token" ).enqueue(object : Callback<ResponseJadwalInstruktur>{
             override fun onResponse(
@@ -61,15 +62,18 @@ class ShowJadwalInstrukturFragment : Fragment() {
 
                         loadRecycleView(responseBody.data as ArrayList<DataItem>)
                         Toast.makeText(activity, "Berhasil Mendapatkan Data", Toast.LENGTH_SHORT).show()
+                        binding.loading.layoutLoading.visibility = android.view.View.GONE
 
                     }else{
                         Toast.makeText(activity, "Gagal Mendapatkan Data", Toast.LENGTH_SHORT).show()
+                        binding.loading.layoutLoading.visibility = android.view.View.GONE
                     }
                 }
             }
 
             override fun onFailure(call: Call<ResponseJadwalInstruktur>, t: Throwable) {
                 Toast.makeText(activity, "Internet Mati", Toast.LENGTH_SHORT).show()
+                binding.loading.layoutLoading.visibility = android.view.View.GONE
             }
 
         })

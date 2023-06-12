@@ -55,6 +55,7 @@ class CekJumlahDeposit : Fragment() {
 
     fun getDepoKelas(id : String){
         val client = ApiConfig.getApiService()
+        binding.loading.layoutLoading.visibility = android.view.View.VISIBLE
         client.getDepoKelas(
             "Bearer $token",
             id,
@@ -66,6 +67,7 @@ class CekJumlahDeposit : Fragment() {
                 if(response.isSuccessful){
                     val responseBody = response.body()
                     if(responseBody != null){
+                        binding.loading.layoutLoading.visibility = android.view.View.GONE
                         Toast.makeText(context, responseBody.message, Toast.LENGTH_SHORT).show()
                         loadRecycleView(responseBody.data as ArrayList<DataItem>)
 
@@ -73,11 +75,13 @@ class CekJumlahDeposit : Fragment() {
                 }else{
                     val errorBody = JSONObject(response.errorBody()?.string())
                     Toast.makeText(context, errorBody.getString("message"), Toast.LENGTH_SHORT).show()
+                    binding.loading.layoutLoading.visibility = android.view.View.GONE
                 }
             }
 
             override fun onFailure(call: Call<ResponseCekDepoMember>, t: Throwable) {
-                TODO("Not yet implemented")
+                Toast.makeText(context, "Gagal Koneksi ke Server", Toast.LENGTH_SHORT).show()
+                binding.loading.layoutLoading.visibility = android.view.View.GONE
             }
 
         })

@@ -51,6 +51,7 @@ class ShowBookingKelas : Fragment() {
     }
 
     fun getJadwalHarian(){
+        binding.loading.layoutLoading.visibility = android.view.View.VISIBLE
         val client = ApiConfig.getApiService()
         client.showJadwalHarianM("Bearer $token").enqueue(object : Callback<ResponseBookingKelas> {
             override fun onResponse(
@@ -60,6 +61,7 @@ class ShowBookingKelas : Fragment() {
                 if(response.isSuccessful){
                     val responseBody = response.body()
                     if(responseBody != null){
+                        binding.loading.layoutLoading.visibility = android.view.View.GONE
                         loadRecycleView(responseBody.data as ArrayList<DataItemBookingKelas>)
 
                     }
@@ -68,7 +70,8 @@ class ShowBookingKelas : Fragment() {
             }
 
             override fun onFailure(call: Call<ResponseBookingKelas>, t: Throwable) {
-                TODO("Not yet implemented")
+                binding.loading.layoutLoading.visibility = android.view.View.GONE
+                Toast.makeText(activity, "Error", Toast.LENGTH_SHORT).show()
             }
 
         })

@@ -12,6 +12,7 @@ import com.example.frontend_android.response.ResponseLoginInstruktur
 import com.example.frontend_android.response.bookingGym.ResponseBookingGym
 import com.example.frontend_android.response.bookingGym.ResponseShowBookingGym
 import com.example.frontend_android.response.login.ResponseLoginPegawai
+import com.example.frontend_android.response.login.ResponseLogout
 import com.example.frontend_android.response.presensiInstruktur.ResponseGetJadwalToday
 import com.example.frontend_android.response.presensiInstruktur.ResponseJamMulai
 import com.example.frontend_android.response.presensiInstruktur.ResponsePresensi
@@ -40,7 +41,8 @@ object ApiConfig {
             .addInterceptor(loggingInterceptor)
             .build()
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.18.25/p3l_backend/public/api/")
+//            .baseUrl("http://192.168.18.25/p3l_backend/public/api/")
+            .baseUrl("https://gofit-backend.danielriq221.com/p3l_backend/public/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
@@ -237,6 +239,21 @@ interface ApiService {
     fun getInstrukturData(
         @Header("Authorization") token: String,
     ): Call<ResponseDataInstruktur>
+
+    @POST("LogoutInstruktur")
+    fun logoutInstruktur(
+        @Header("Authorization") token: String,
+    ): Call<ResponseLogout>
+
+    @POST("LogoutPegawai")
+    fun logoutPegawai(
+        @Header("Authorization") token: String,
+    ): Call<ResponseLogout>
+
+    @POST("LogoutMember")
+    fun logoutMember(
+        @Header("Authorization") token: String,
+    ): Call<ResponseLogout>
 
 
 

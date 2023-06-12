@@ -15,6 +15,7 @@ import com.example.frontend_android.api.ApiConfig
 import com.example.frontend_android.auth.LoginActivity
 
 import com.example.frontend_android.databinding.FragmentProfilMemberNewBinding
+import com.example.frontend_android.response.login.ResponseLogout
 import com.example.frontend_android.response.profilMember.ResponseProfilMember
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.json.JSONObject
@@ -63,9 +64,7 @@ class ProfilMemberNew : Fragment() {
                 .setMessage("Apakah anda yakin keluar?")
                 .setNegativeButton("Batal", null)
                 .setPositiveButton("Logout"){_,_ ->
-                    val intent = Intent(activity, LoginActivity::class.java)
-                    startActivity(intent)
-                    activity?.finish()
+                    logout()
                 }.show()
         }
     }
@@ -104,6 +103,40 @@ class ProfilMemberNew : Fragment() {
             }
 
             override fun onFailure(call: Call<ResponseProfilMember>, t: Throwable) {
+                Toast.makeText(context, "Gagal Mendapatkan Data", Toast.LENGTH_SHORT).show()
+                binding.loading.layoutLoading.visibility = android.view.View.GONE
+            }
+
+        })
+    }
+
+    fun logout(){
+        binding.loading.layoutLoading.visibility = android.view.View.VISIBLE
+        val client = ApiConfig.getApiService()
+        client.logoutMember("Bearer $token").enqueue(object: Callback<ResponseLogout>{
+            override fun onResponse(
+                call: Call<ResponseLogout>,
+                response: Response<ResponseLogout>
+            ) {
+                if(response.isSuccessful){
+                    val responseBody = response.body()
+                    if(responseBody != null){
+                        binding.loading.layoutLoading.visibility = android.view.View.GONE
+                        Toast.makeText(context, "Berhasil Logout", Toast.LENGTH_SHORT).show()
+                        pref?.edit()?.clear()?.apply()
+                        sp?.edit()?.clear()?.apply()
+                        val intent = Intent(activity, LoginActivity::class.java)
+                        startActivity(intent)
+                        activity?.finish()
+                    }
+                }else{
+                    binding.loading.layoutLoading.visibility = android.view.View.GONE
+                    val errorBody = JSONObject(response.errorBody()?.string())
+                    Toast.makeText(context, errorBody.getString("message"), Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseLogout>, t: Throwable) {
                 Toast.makeText(context, "Gagal Mendapatkan Data", Toast.LENGTH_SHORT).show()
                 binding.loading.layoutLoading.visibility = android.view.View.GONE
             }

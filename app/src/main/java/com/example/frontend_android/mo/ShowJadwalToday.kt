@@ -21,6 +21,7 @@ import com.example.frontend_android.response.BookingKelas.DataItemBookingKelas
 import com.example.frontend_android.response.BookingKelas.ResponseBookingKelas
 import com.example.frontend_android.response.presensiInstruktur.DataItem
 import com.example.frontend_android.response.presensiInstruktur.ResponseGetJadwalToday
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -65,11 +66,14 @@ class ShowJadwalToday : Fragment() {
 
                     }
 
+                }else{
+                    val errorBody = JSONObject(response.errorBody()?.string())
+                    Toast.makeText(context, errorBody.getString("message"), Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<ResponseGetJadwalToday>, t: Throwable) {
-                TODO("Not yet implemented")
+                Toast.makeText(activity, "Gagal", Toast.LENGTH_SHORT).show()
             }
 
         })
