@@ -64,7 +64,6 @@ class PresensiMember : Fragment() {
                 if(response.isSuccessful){
                     val responseBody = response.body()
                     if(responseBody != null){
-                        Toast.makeText(context, responseBody.message, Toast.LENGTH_SHORT).show()
                         loadRecycleView(responseBody.data as ArrayList<DataMember>)
                         binding.loading.layoutLoading.visibility = android.view.View.GONE
                     }

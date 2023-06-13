@@ -65,7 +65,7 @@ class showBookingGym : Fragment() {
                     val responseBody = response.body()
                     if(responseBody != null){
                         binding.loading.layoutLoading.visibility = android.view.View.GONE
-                        Toast.makeText(activity, "Berhasil Mendapatkan Data", Toast.LENGTH_SHORT).show()
+
                         loadRecycleView(responseBody.data as ArrayList<DataItem>)
                     }
                 }else{
@@ -88,7 +88,7 @@ class showBookingGym : Fragment() {
     fun loadRecycleView(item: ArrayList<DataItem>){
         val adapter = showBookingGymAdapter(item, object :showBookingGymAdapter.ClickInterface{
             override fun onClickItem(data: DataItem) {
-                Toast.makeText(activity, "Berhasil Menerima Data", Toast.LENGTH_SHORT).show()
+
                 val materialAlertDialogBuilder = MaterialAlertDialogBuilder(requireContext())
                 materialAlertDialogBuilder.setTitle("Konfirmasi")
                     .setMessage("Apakah anda yakin ingin menghapus mahasiswa ini?")

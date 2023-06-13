@@ -111,7 +111,7 @@ class ProfilInstruktur : Fragment() {
                 if(response.isSuccessful){
                     val responseBody = response.body()
                     if(responseBody != null){
-                        Toast.makeText(context, "Berhasil Logout", Toast.LENGTH_SHORT).show()
+
                         binding.loading.layoutLoading.visibility = android.view.View.GONE
                         pref?.edit()?.clear()?.apply()
                         sp?.edit()?.clear()?.apply()

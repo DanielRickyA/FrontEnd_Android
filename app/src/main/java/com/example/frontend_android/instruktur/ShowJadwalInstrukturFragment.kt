@@ -61,7 +61,6 @@ class ShowJadwalInstrukturFragment : Fragment() {
                     if(responseBody != null){
 
                         loadRecycleView(responseBody.data as ArrayList<DataItem>)
-                        Toast.makeText(activity, "Berhasil Mendapatkan Data", Toast.LENGTH_SHORT).show()
                         binding.loading.layoutLoading.visibility = android.view.View.GONE
 
                     }else{

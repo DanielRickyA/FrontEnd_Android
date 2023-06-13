@@ -84,7 +84,6 @@ class ProfilMemberNew : Fragment() {
                     val responseBody  = response.body()
                     if(responseBody != null){
                         binding.loading.layoutLoading.visibility = android.view.View.GONE
-                        Toast.makeText(context, "Berhasil Mendapatkan Data", Toast.LENGTH_SHORT).show()
                         binding.tvNama.text = responseBody.data.nama
                         binding.tvIdMember.text = responseBody.data.id
                         binding.tvstatus.text = responseBody.data.status

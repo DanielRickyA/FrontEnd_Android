@@ -63,10 +63,6 @@ class HistoryPerizinanFragment : Fragment() {
                         loadRecycleView(responseBody.data as ArrayList<DataItemHistory>)
                         binding.loading.layoutLoading.visibility = android.view.View.GONE
                         println(responseBody.data)
-
-
-                        Toast.makeText(activity, "Berhasil Mendapatkan Data", Toast.LENGTH_SHORT).show()
-
                     }else{
                         binding.loading.layoutLoading.visibility = android.view.View.GONE
                         Toast.makeText(activity, "Gagal Mendapatkan Data", Toast.LENGTH_SHORT).show()

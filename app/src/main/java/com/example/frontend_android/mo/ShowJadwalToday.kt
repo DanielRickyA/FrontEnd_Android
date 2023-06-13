@@ -83,7 +83,6 @@ class ShowJadwalToday : Fragment() {
         val adapter = ShowJadwalTodayAdapter(item)
         adapter.setCallback(object : ShowJadwalTodayAdapter.ClickInterface{
             override fun onClickItem(data: DataItem){
-                Toast.makeText(activity, "Berhasil", Toast.LENGTH_SHORT).show()
                 sp!!.edit().putInt("id", data.id)
                     .putString("tanggal", data.tanggalJadwalHarian)
                     .putString("instruktur", data.fInstruktur.nama)

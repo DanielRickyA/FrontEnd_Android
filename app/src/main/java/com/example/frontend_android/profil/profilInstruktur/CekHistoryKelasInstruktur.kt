@@ -52,7 +52,7 @@ class CekHistoryKelasInstruktur : Fragment() {
 
     fun getHistoryKelasInstruktur(){
         val client = ApiConfig.getApiService()
-        binding.loading.layoutLoading.visibility = android.view.View.VISIBLE
+
         client.getHistoryKelasInstruktur(
             "Bearer $token",
         ).enqueue(object : Callback<ResponseHistoryKelasInstruktur> {

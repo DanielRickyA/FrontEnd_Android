@@ -76,7 +76,6 @@ class ShowPresensiToday : Fragment() {
         adapter.setCallback(object : ShowPresensiAdapter.ClickInterface{
             @SuppressLint("CommitPrefEdits")
             override fun onClickItem(data: DataItemPresensi){
-                Toast.makeText(activity, "Berhasil", Toast.LENGTH_SHORT).show()
                 sp!!.edit().putInt("id", data.id)
                     .putString("tanggal", data.tanggalKelas)
                     .putString("instruktur", data.fInstruktur.nama)

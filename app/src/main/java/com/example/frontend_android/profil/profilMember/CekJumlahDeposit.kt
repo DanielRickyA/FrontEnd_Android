@@ -68,7 +68,7 @@ class CekJumlahDeposit : Fragment() {
                     val responseBody = response.body()
                     if(responseBody != null){
                         binding.loading.layoutLoading.visibility = android.view.View.GONE
-                        Toast.makeText(context, responseBody.message, Toast.LENGTH_SHORT).show()
+
                         loadRecycleView(responseBody.data as ArrayList<DataItem>)
 
                     }

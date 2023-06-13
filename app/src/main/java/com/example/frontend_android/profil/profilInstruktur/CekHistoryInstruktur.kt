@@ -64,7 +64,7 @@ class CekHistoryInstruktur : Fragment() {
                     if(responseBody != null){
                         loadRecycleView(responseBody.data as ArrayList<DataItemHistory>)
                         println(responseBody.data)
-                        Toast.makeText(activity, "Berhasil Mendapatkan Data", Toast.LENGTH_SHORT).show()
+
                         binding.loading.layoutLoading.visibility = android.view.View.GONE
 
                     }else{
