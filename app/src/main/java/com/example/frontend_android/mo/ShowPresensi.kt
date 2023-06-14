@@ -55,6 +55,7 @@ class ShowPresensi : Fragment() {
     }
 
     fun getPresensiToday(){
+        binding.loading.layoutLoading.visibility = android.view.View.VISIBLE
         val client = ApiConfig.getApiService()
         client.getPresensiToday("Bearer $token").enqueue(object : Callback<ResponsePresensi> {
             override fun onResponse(
@@ -64,12 +65,14 @@ class ShowPresensi : Fragment() {
                 if(response.isSuccessful){
                     val responseBody = response.body()
                     if(responseBody != null){
+                        binding.loading.layoutLoading.visibility = android.view.View.GONE
                         loadRecycleView(responseBody.data as ArrayList<DataItemPresensi>)
 
                     }
                 }else{
                     val errorBody = JSONObject(response.errorBody()?.string())
                     Toast.makeText(context, errorBody.getString("message"), Toast.LENGTH_SHORT).show()
+                    binding.loading.layoutLoading.visibility = android.view.View.GONE
                 }
             }
 

@@ -53,6 +53,7 @@ class ShowJadwalToday : Fragment() {
     }
 
     fun getJadwalHarianToday(){
+        binding.loading.layoutLoading.visibility = android.view.View.VISIBLE
         val client = ApiConfig.getApiService()
         client.getJadwalHarianToday("Bearer $token").enqueue(object : Callback<ResponseGetJadwalToday> {
             override fun onResponse(
@@ -62,6 +63,7 @@ class ShowJadwalToday : Fragment() {
                 if(response.isSuccessful){
                     val responseBody = response.body()
                     if(responseBody != null){
+                        binding.loading.layoutLoading.visibility = android.view.View.GONE
                         loadRecycleView(responseBody.data as ArrayList<DataItem>)
 
                     }
@@ -69,11 +71,13 @@ class ShowJadwalToday : Fragment() {
                 }else{
                     val errorBody = JSONObject(response.errorBody()?.string())
                     Toast.makeText(context, errorBody.getString("message"), Toast.LENGTH_SHORT).show()
+                    binding.loading.layoutLoading.visibility = android.view.View.GONE
                 }
             }
 
             override fun onFailure(call: Call<ResponseGetJadwalToday>, t: Throwable) {
                 Toast.makeText(activity, "Gagal", Toast.LENGTH_SHORT).show()
+                binding.loading.layoutLoading.visibility = android.view.View.GONE
             }
 
         })
